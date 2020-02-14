@@ -4,3 +4,5 @@
 
 I'm planning to write an introductory PHP tutorial here, as there doesn't seem to be anything I'm really happy
 recommending already free online.
+
+testing what happens if we add a typoo that isnt spelled write to the file.
