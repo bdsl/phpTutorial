@@ -70,4 +70,14 @@ $dwarfPlanet = 'Pluto';
 echo "Hello, $dwarfPlanet.\n";
 ```
 
-to do: come up with good example use for an associate array.
+The PHP manual lists [81 functions for manipulating arrays](https://www.php.net/manual/en/ref.array.php). For now let's
+just try one: [natsort](https://www.php.net/manual/en/function.natsort.php). Add new line before `foreach`:
+
+```php
+natsort($planets);
+```
+
+Re-run the script - the planets are now listed in alphabetical order. But notice that the array keys have not changed - 
+Mercury is still planet number `0`, it's just that `0` now happens to come after `3`. PHP array keys can come in any
+order.
+

@@ -7,8 +7,10 @@ JS
 Javascript
 JetBrains
 Laurance
+Magrathea
 MariaDB
 MySQL
+natsort
 NTS
 OPcache
 Ondřej
@@ -16,6 +18,7 @@ PHP
 PSL
 PhpStorm
 Remi's
+TypeError
 TypeScript
 XAMPP
 Xampp
@@ -36,6 +39,7 @@ endswitch
 endwhile
 eval
 foreach
+getGreeting
 goto
 instanceof
 insteadof
@@ -45,6 +49,7 @@ localhost
 namespace
 perl
 php
+planetName
 pre
+regexes
 sudo
-

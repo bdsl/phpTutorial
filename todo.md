@@ -6,4 +6,6 @@
 - Evaluate and choose flat-file CMS / static site generator
 - set up build
 
+- add something about associative (string-keyed) arrays in array page.
+
 etc etc
