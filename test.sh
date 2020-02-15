@@ -3,6 +3,6 @@
 set -x
 set -e
 
-if [[ $(cat *.md | aspell -p ./.spelling/wordlist list) ]]; then
+if [[ $(cat *.md content/*.md | aspell -p ./.spelling/wordlist list) ]]; then
   exit 1
 fi
