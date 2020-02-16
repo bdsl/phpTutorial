@@ -25,7 +25,7 @@ $
 
 Every PHP file should start with `<?php declare(strict_types=1);` . This tells the PHP interpreter that you're writing
 PHP, and `strict_types` tells PHP not to try to guess what you mean so much. Historically PHP has tended to be very
-loose, and prefer make the best guess of what's required if it isn't clear instead of giving up. That's probably good
+loose, and prefer to make the best guess of what's required if it isn't clear instead of giving up. That's probably good
 for writing a website one page at a time, but for applications we need the computer to stop and tell us what's wrong
 if we make a mistake, not plough ahead and give us a wrong result.
 
