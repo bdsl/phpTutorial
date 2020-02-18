@@ -11,3 +11,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Test
       run: ./test.sh
+
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Generate HTML
+      run: php generate.php
