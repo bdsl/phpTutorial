@@ -29,5 +29,5 @@ jobs:
           paths:
             - ./vendor
 
-      - run: test.sh 
+      - run: ./test.sh
       - run: php generate.php
