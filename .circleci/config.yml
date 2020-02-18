@@ -31,3 +31,7 @@ jobs:
 
       - run: ./test.sh
       - run: php generate.php
+
+
+      - store_artifacts:
+          path: generated
