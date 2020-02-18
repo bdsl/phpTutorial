@@ -8,10 +8,21 @@
 }
 
 body > div {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
 }
 
 #byline {
     text-align: right;
+}
+
+#draft {
+    position: absolute;
+    top: 1.5em;
+    transform-origin: center;
+    transform: rotate(45deg);
+    font-size: 15em;
+    pointer-events: none;
+    font-weight: bolder;
+    color: rgba(0,0,0,0.07);
 }
