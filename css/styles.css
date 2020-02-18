@@ -1,0 +1,17 @@
+#pages ul {
+    display:flex;
+    list-style:none;
+}
+
+#pages ul li {
+    margin: 1em;
+}
+
+body > div {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#byline {
+    text-align: right;
+}

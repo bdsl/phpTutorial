@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+<div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+            {% for page in pages %}
+                <li><a href="{{ page.filename }}.html">{{ page.filename }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <article>
+        {{ body | raw }}
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

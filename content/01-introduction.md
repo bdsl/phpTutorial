@@ -1,5 +1,3 @@
-# PSL - PHP as a Second Language
-
 ## Who is this for?
 
 This is for anyone who wants to learn to program in PHP as a second language.
