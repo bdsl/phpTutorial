@@ -26,3 +26,10 @@ body > div {
     font-weight: bolder;
     color: rgba(0,0,0,0.07);
 }
+
+#footer {
+    margin-top: 1em;
+    padding: 1em;
+    border: 2px solid #b0b0b0;
+    background-color: #dcdcdc;
+}
