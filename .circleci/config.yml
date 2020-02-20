@@ -11,7 +11,8 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt update 
+      - run: sudo apt update
+      - run: sudo apt install aspell
       - run: sudo docker-php-ext-install zip
 
       # Download and cache dependencies
