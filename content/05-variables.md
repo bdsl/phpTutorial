@@ -87,7 +87,7 @@ order.
 We can also assign array keys explicitly. When we're interested in the keys of an array we call it an 
 *associative array*. For example:
 
-```
+```php
 <?php declare(strict_types=1);
 
 $planetPopulations = [
@@ -102,5 +102,4 @@ $planetPopulations = [
 ];
 
 echo "The population of Earth is {$planetPopulations['Earth']}.\n";
-
 ```
