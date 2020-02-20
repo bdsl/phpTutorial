@@ -1,4 +1,4 @@
-# Variables
+# Variables, arrays and loops
 
 Variables in PHP always have a dollar sign `$` at the start of their names, and you declare a variable by assigning a
 value to it. PHP *interpolates* double-quoted strings with variables. Edit hello.php to use a variable:
@@ -14,14 +14,15 @@ echo "Hello, $planet.\n";
 
 You can probably guess what this will do when you run it on your command line or serve it to your browser.
 
-# Arrays and loops
+## Arrays and loops
 
 PHP has a very versatile built-in type called `array`. You're unlikely to find much PHP code that doesn't use arrays
 extensively, but they are easy to overuse at the cost of other more expressive types. Despite the name, a PHP `array`
 isn't really an *array* as you may know it from other languages. A PHP array is an **ordered iterable dictionary, with keys
-and values**. The keys may be strings or integers, and by default will be sequential integers starting at zero.
+and values**. The keys may be strings or integers, and by default will be sequential integers starting at zero. The
+values can be anything that could go in a variable, including more arrays.
 
-An array is not an object in PHP - we will get on to objects later.
+An array is not an object in PHP — we will get on to objects later.
 
 Let's edit our script to declare an array and iterate through it:
 
@@ -81,3 +82,25 @@ Re-run the script - the planets are now listed in alphabetical order. But notice
 Mercury is still planet number `0`, it's just that `0` now happens to come after `3`. PHP array keys can come in any
 order.
 
+## Associative arrays
+
+We can also assign array keys explicitly. When we're interested in the keys of an array we call it an 
+*associative array*. For example:
+
+```
+<?php declare(strict_types=1);
+
+$planetPopulations = [
+    'Mercury' => 0,
+    'Venus' => 0,
+    'Earth' => 7.7 * 10**9,
+    'Mars' => 0,
+    'Jupiter' => 0,
+    'Saturn' => 0,
+    'Uranus' => 0,
+    'Neptune' => 0,
+];
+
+echo "The population of Earth is {$planetPopulations['Earth']}.\n";
+
+```
