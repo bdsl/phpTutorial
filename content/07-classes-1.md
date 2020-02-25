@@ -6,7 +6,7 @@ different to the prototype based OO in JavaScript.
 In the sort of PHP code I write almost 100% of the code is in a project is in classes - some classes are used to make
 objects, and others may just be convenient wrappers around groups of functions.
 
-In PHP every object is an instance of a class, so you have to have a class before you can have an object. Let's write
+In PHP every object is an **instance** of a class, so you have to have a class before you can have an object. Let's write
 a class to let us make Planet objects. How to write classes changed a bit in PHP 7.4. Enter the 
 following in a file called `Planet.php`:
 
@@ -74,8 +74,8 @@ Let's read through the class from top to bottom.
 to distinguish between submodules when our program gets bigger. We will keep all our code in this namespace. The 
 namespace is effectively a prefix, so the full name of the class is ``\PhpAsASecondLanguage\Planet``.
 
-* Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing will
-be covered later in the tutorial, but for now we can say that it adds significant complexity, and if we don't need it
+* Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing is
+beyond the scope of this tutorial, but for now we can say that it adds significant complexity, and if we don't need it
 we should probably avoid it. It's therefore a good practice to make classes final by default - we can always delete the
 word final if we ever find we do need to make a *subclasses* of Planet.
 
@@ -97,7 +97,10 @@ the `new` keyword.
 code outside the class to read the properties. By keeping the properties private and creating getters but not setters
 we can create an immutable object. It's verbose, but it's a lot easier to understand what's happening in a big project
 with a class like this than it would be if the properties were public and code from lots of other places could be
-writing to them. 
+writing to them.
+
+    These functions will be run with a given object instance of the class. The `$this` variable will refer to that 
+    object. We use the arrow `->` operator to access the properties and methods of any object. 
 
     Having getters also means that if we later want to change the class - perhaps to replace the 
 `$populationSize` property with an array that holds details of every person on the planet - we can edit the code inside

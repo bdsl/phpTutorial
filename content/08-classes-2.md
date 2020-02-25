@@ -25,6 +25,8 @@ $planet = new Planet('Neptune', 0);
 echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSize()}.\n";
 ```
 
+The `new` keyword creates objects instances from classes, and automatically runs any constructor with the arguments we pass.
+
 We can try running this now but it won't work just yet, because we need to link it up with `Planet.php`. When you type 
 `php start.php` you should see `PHP Fatal error:  Uncaught Error: Class 'Planet' not found`.
 
@@ -42,7 +44,7 @@ Edit start.php to make it look like this:
 
 namespace PhpAsASecondLanguage;
 
-require_once 'Planet.php';
+require_once __DIR__ . '/Planet.php';
 
 $planet = new Planet('Neptune', 0);
 
@@ -54,6 +56,9 @@ tells PHP to process the contents of the given file as if it had been pasted in 
 the `<?php` opening tag and the `declare`. The once part means that if we require the same file more than once PHP will
 skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no need to
 load it again, even if multiple parts of our program have to declare that they need that class.
+
+`__DIR__` is a PHP magic constant that refers to the directory of whatever file its used in. The dot `.` is PHP's string
+concatenation operator.
 
 But adding a `require_once` statement every time we need to use a class can quickly become tedious. It's what we all 
 mostly did until around 2015, when the *Composer* dependency management tool became popular, even prompting a rare
@@ -108,7 +113,7 @@ Re-run `composer install`, and then edit start.php to require Composer's autoloa
 
 namespace PhpAsASecondLanguage;
 
-require_once 'vendor/autoload.php';
+require_once __DIR__. '/vendor/autoload.php';
 
 $planet = new Planet('Neptune', 0);
 echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSize()}.\n";
