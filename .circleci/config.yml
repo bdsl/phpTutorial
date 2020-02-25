@@ -2,7 +2,9 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2
+version: 2.1
+orbs:
+  gh-pages: sugarshin/gh-pages@0.0.6
 jobs:
   build:
     docker:
@@ -40,3 +42,14 @@ jobs:
           command: |
             echo "Generated website available at:"
             echo https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BUILD_NUM}/artifacts/0/generated/01-introduction.html
+      - persist_to_workspace:
+          root: ~/
+          paths: project/generated
+
+  deploy_ghpages:
+    executor: buildpack_deps
+    steps:
+      - gh-pages/deploy:
+          ssh-fingerprints: '73:52:89:88:54:e7:4b:5a:c1:25:9b:db:85:d7:fc:a3'
+          attach-workspace: true
+          checkout: false
