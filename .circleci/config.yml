@@ -49,6 +49,7 @@ jobs:
       - image: buildpack-deps:trusty
     steps:
       - checkout # just needed to get the SSH key for github so we can push later
+      - add_ssh_keys
       - attach_workspace:
           at: /tmp/workspace
       - run:
