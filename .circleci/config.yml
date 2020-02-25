@@ -55,6 +55,18 @@ jobs:
           name: Deploy to Githup pages
           command: |
             find /tmp/workspace
+            cd project
+            git checkout gh-pages
+            mv .git/ /tmp/
+            find . -mindepth 1 -delete
+            mv /tmp/.git .
+            cp -a /tmp/workspace/project/generated/. .
+            git add --no-ignore-removal .
+            git config user.email ci@circleci
+            git config user.name "Circle CI"
+            git commit -m "Update GH Pages based on CircleCI Build $CIRCLE_PREVIOUS_BUILD_NUM"
+            git config --global push.default simple
+
 workflows:
   Workflow:
     jobs:
