@@ -18,6 +18,8 @@ Write the following in a file called start.php
 ```php
 <?php declare(strict_types=1);
 
+namespace PhpAsASecondLanguage;
+
 $planet = new Planet('Neptune', 0);
 
 echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSize()}.\n";
