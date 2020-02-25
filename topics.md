@@ -10,7 +10,7 @@ Not in any specific order. Topics for which at least some writing is done are ma
 * Arrays * 
 * Functions * 
 * Classes *
-* Loading other files (require_once and / or using composer autoloader) - including namespaces
+* Loading other files (require_once and / or using composer autoloader) - including namespaces *
 * Databases (PDO with SQLite)
 * Testing (PHPUnit)
 * Static analysis (Psalm)
