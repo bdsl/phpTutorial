@@ -55,7 +55,7 @@ jobs:
           name: Deploy to Githup pages
           command: |
             find /tmp/workspace
-            cd project
+            cd ~/project
             git checkout gh-pages
             mv .git/ /tmp/
             find . -mindepth 1 -delete
