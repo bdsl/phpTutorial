@@ -28,6 +28,7 @@ PHPDoc
 PHPUnit
 PSL
 PSR
+PhpAsASecondLanguage
 PhpStorm
 Remi's
 SQLite
@@ -45,6 +46,7 @@ ci
 circleci
 cli
 codebase
+config
 const
 ctrl
 devs
@@ -71,6 +73,7 @@ instanceof
 insteadof
 isset
 iterable
+json
 localhost
 md
 namespace
@@ -83,6 +86,10 @@ planetName
 planetPopulations
 populationSize
 pre
+psr
 regexes
+src
 subclasses
+subdirectory
+submodules
 sudo

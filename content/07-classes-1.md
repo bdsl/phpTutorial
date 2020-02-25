@@ -13,6 +13,8 @@ following in a file called `Planet.php`:
 ```php
 <?php declare(strict_types=1);
 
+namespace PhpAsASecondLanguage;
+
 final class Planet
 {
     private string $name;
@@ -67,6 +69,10 @@ class on the next page.
 ## What's in the class
 
 Let's read through the class from top to bottom.
+
+* The entire file is in a **namespace**. This is useful to help distinguish our code from other people's code, and
+to distinguish between submodules when our program gets bigger. We will keep all our code in this namespace. The 
+namespace is effectively a prefix, so the full name of the class is ``\PhpAsASecondLanguage\Planet``.
 
 * Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing will
 be covered later in the tutorial, but for now we can say that it adds significant complexity, and if we don't need it

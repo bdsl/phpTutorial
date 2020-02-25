@@ -38,6 +38,8 @@ Edit start.php to make it look like this:
 ```php
 <?php declare(strict_types=1);
 
+namespace PhpAsASecondLanguage;
+
 require_once 'Planet.php';
 
 $planet = new Planet('Neptune', 0);
@@ -66,6 +68,52 @@ instead of composer. If you have it, you should see "Composer - Dependency Manag
 [download and install composer from getcomposer.org](https://getcomposer.org/download/), then come back to this page. I
 suggest installing it to somewhere on your executable PATH, and naming it `composer` rather than `composer.phar`.
 
+Let's adjust our script to use composer instead of require_once. First delete the require_once statement, to get back
+to the class not found error we had before.
 
+Create a subdirectory `src` and move Planet.php inside `src`. It's generally a good idea to have this to keep the bulk
+of our source code separate from everything else in our project, e.g. the entry point file, any docs we might want to write,
+tool config etc. 
 
- 
+Composer works on a project-by-project basis. To set it up for your a project, you need to create a `composer.json` file.
+To start with, just put an empty json object in this file:
+
+```json
+{
+}
+```
+
+You can now run `composer install`. Composer should create a `vendor` subdirectory. Everything you install to you project
+through composer will be in that directory. You would normally want to exclude vendor from source control.
+
+Now we need to tell composer how to load your classes. The PSR-4 scheme is a standard way of translating between PHP 
+class names and file paths. Edit composer.json to look like the following:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "PhpAsASecondLanguage\\": "src/"
+        }
+    }
+}
+```
+
+Re-run `composer install`, and then edit start.php to require Composer's autoloader:
+
+```php
+<?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once 'vendor/autoload.php';
+
+$planet = new Planet('Neptune', 0);
+echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSize()}.\n";
+
+```
+
+As long as we keep our file names matching our class names, Composer will automatically load any class we need, and
+only when we need it.
+
+If you run `php start.php` you should once again learn the population of Neptune.
