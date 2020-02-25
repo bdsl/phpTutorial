@@ -34,4 +34,6 @@ foreach ($files as $file)
     );
 }
 
+$fileystem->copy('generated/01-introduction.html', 'generated/index.html');
+
 $fileystem->copy('css/styles.css', 'generated/css/styles.css');
