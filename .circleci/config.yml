@@ -54,3 +54,10 @@ jobs:
           attach-workspace: true
           checkout: false
           build-dir: project/generated
+workflows:
+  Workflow:
+    jobs:
+      - build
+      - deploy_ghpages:
+          requires:
+            - build
