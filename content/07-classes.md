@@ -37,6 +37,8 @@ final class Planet
 }
 ```
 
+## Older PHP Versions
+
 `name` and `populationSize` are the properties of the class, and they have `string` and `float` types respectively.
 Before 7.4 PHP didn't allow us to specify types for properties. We still want to know what types of values we intend to 
 put in the properties, so we use a **DocBlock** instead. If you don't have 7.4 yet, change the property declarations 
@@ -57,37 +59,46 @@ to:
 These DocBlocks are ignored by the PHP engine, but they are very useful for us, and many tools and IDEs will read them.
 The code inside the docblock is written in the **PHPDoc** language.
 
-Run `php Planet.php`. You should see no output - a class by itself doesn't do anything. Let's read through the class 
-from top to bottom:
+## Running the code
 
-Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing will
+Run `php Planet.php`. You should see no output - a class by itself doesn't do anything. We will write code to use this
+class on the next page.
+
+## What's in the class
+
+Let's read through the class from top to bottom.
+
+* Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing will
 be covered later in the tutorial, but for now we can say that it adds significant complexity, and if we don't need it
 we should probably avoid it. It's therefore a good practice to make classes final by default - we can always delete the
 word final if we ever find we do need to make a *subclasses* of Planet.
 
-Planet has `name` and `populationSize` properties. When we create Planet objects every object will have its own copy
+* Planet has `name` and `populationSize` **properties**. When we create Planet objects every object will have its own copy
 of these properties. `private` is the properties *visibility* - that means that the properties can only be directly read
 or written by code within the Planet class. In the PHP 7.4 code they are **typed properties**, which that PHP will
 do a type check at run time whenever we assign values to the properties, and it will only allow us to assign strings of
 text and and floating point numbers - attempting to assign anything else would a fatal error.
 
-We would also get a fatal error if we tried to read these typed properties before they are initialised.
+    We would also get a fatal error if we tried to read these typed properties before they are initialised.
 
-Next we have three functions. These all have *public* visibility, which means we can call them from anywhere.
+* Next we have three **functions**, also known as methods. These all have *public* visibility, which means we can call them from anywhere.
 
-Functions whose names start with `__` are considered **Magic Methods** in PHP - they have special meanings given by the
+    Functions whose names start with `__` are considered **Magic Methods** in PHP - they have special meanings given by the
 language. `__construct` is the **Constructor**, and will be automatically called whenever we create a Planet object with 
 the `new` keyword.
 
-Finally we have our two *getter* functions. Since the properties are private, these public functions are needed to allow
+    Finally we have our two *getter* functions. Since the properties are private, these public functions are needed to allow
 code outside the class to read the properties. By keeping the properties private and creating getters but not setters
 we can create an immutable object. It's verbose, but it's a lot easier to understand what's happening in a big project
 with a class like this than it would be if the properties were public and code from lots of other places could be
 writing to them. 
 
-Having getters also means that if we later want to change the class - perhaps to replace the 
+    Having getters also means that if we later want to change the class - perhaps to replace the 
 `$populationSize` property with an array that holds details of every person on the planet - we can edit the code inside
 the getter function and make it return the size of the array. Code that uses this class wouldn't have to be 
 affected by the change. Changes tend to ripple through a codebase, and one of the most important things to do when
 choosing how to write code is anticipating types of future changes, and putting barriers in place to limit the spread of
-those changes. 
+those changes.
+
+If you know JavaScript, you can think of a class with public and private parts as serving a similar purpose to a 
+JavaScript module that exports some but not all of its symbols.
