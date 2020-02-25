@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Getting PHP</h1>
+<p>If you just want to run a PHP one-liner, or experiment with a tiny throwaway PHP script, the easiest way is probably
+online at <a href="https://3v4l.org/">3v4l</a>, but to work through this tutorial you should have PHP installed on your computer.</p>
+<h2>Installation</h2>
+<p>First check if you already have PHP installed. Open your command-line prompt, and type <code>php --v</code>. If you have PHP, you
+should see something like the following:</p>
+<pre><code>PHP 7.4.2 (cli) (built: Jan 23 2020 11:21:30) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v7.4.2, Copyright (c), by Zend Technologies</code></pre>
+<p>Check the first two parts of the version number, e.g. 7.4 above. This is the current version of PHP. Supported older
+versions are <strong>7.3</strong> and <strong>7.2</strong>. If you have an older version you will need to upgrade before using this tutorial.</p>
+<p>Very few people download PHP directly from php.net. If you work with PHP developers you may want to check where
+they install their PHP packages from and do the same. Installation methods vary with your operating system:</p>
+<h3>Linux</h3>
+<p>On Linux, use your package manager to install PHP, e.g. with the <code>sudo apt install php</code> command on Ubuntu, or Debian, and
+<code>sudo dnf -y install php-cli</code> on Fedora. However these may not give you a recent enough version of PHP. You can get
+more up to date packages for Ubuntu from <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php">Ondřej Surý</a> for Ubuntu or
+from <a href="https://rpms.remirepo.net/wizard/">Remi's RPM Repository</a> for Red Hat, CentOs and Fedora.</p>
+<h3>Macintosh</h3>
+<p>Apple supplies PHP as part of OS X, but this is 7.1, and you need at least 7.2. The best way to get that is probably
+through <strong>Homebrew</strong>. If you don't have it, first install the Homebrew package manager by following the instructions at
+<a href="https://brew.sh/">brew.sh</a>, and then enter the command <code>brew install php &amp;&amp; brew link php</code>. </p>
+<h3>Windows</h3>
+<p>I personally don't have a Windows machine, but I think the easiest way to set up PHP on Windows is as part of the
+<strong>XAMPP</strong> package. Download and run <a href="https://www.apachefriends.org/index.html">the installer from Apache Friends</a>. This
+package bundles PHP along with the Apache web server, MariaDB database server, and the perl language. Xampp is also available
+for Linux and Macintosh. </p>
+<p>Run <code>php -v</code> again. Hopefully you will now have version <strong>7.2 or later</strong>.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Classes Part 2</h1>
+<p>On the last page we wrote <strong>Planet</strong> class, and saved it in a file called <strong>Planet.php</strong>. Now we want to put that class
+to work.</p>
+<p>PHP works by executing whatever script we give it from beginning to end. It won't run anything inside a class unless
+we that script tells it to, so every PHP program needs at least one line that isn't part of any class as an entry-point.
+There is no equivalent to the <code>main</code> function of languages like C and Java.</p>
+<p>By convention, and to follow the <strong>PSR-1</strong> coding standard, we always put the entry point in a separate file to the
+class declaration.</p>
+<p>Let's write a simple script to create a planet and print out its details. Since at the moment Planet is just a data
+holder the script won't be too exiting.</p>
+<p>Write the following in a file called start.php</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+$planet = new Planet('Neptune', 0);
+
+echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
+<p>The <code>new</code> keyword creates objects instances from classes, and automatically runs any constructor with the arguments we pass.</p>
+<p>We can try running this now but it won't work just yet, because we need to link it up with <code>Planet.php</code>. When you type
+<code>php start.php</code> you should see <code>PHP Fatal error:  Uncaught Error: Class 'Planet' not found</code>.</p>
+<h2>Linking files together</h2>
+<p>There are two main ways to link files together. The old way is <strong>require_once</strong>, and the new ways is <strong>composer</strong>. We'll
+start with require_once, but for all but the simplest of scripts we will want to use composer.</p>
+<h3>Require_once</h3>
+<p>Edit start.php to make it look like this:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once __DIR__ . '/Planet.php';
+
+$planet = new Planet('Neptune', 0);
+
+echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
+<p>Run the script again, and you should now see <code>Planet Neptune has a population of 0.</code>. The require_once statement
+tells PHP to process the contents of the given file as if it had been pasted in to the current script, ignoring
+the <code>&lt;?php</code> opening tag and the <code>declare</code>. The once part means that if we require the same file more than once PHP will
+skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no need to
+load it again, even if multiple parts of our program have to declare that they need that class.</p>
+<p><code>__DIR__</code> is a PHP magic constant that refers to the directory of whatever file its used in. The dot <code>.</code> is PHP's string
+concatenation operator.</p>
+<p>But adding a <code>require_once</code> statement every time we need to use a class can quickly become tedious. It's what we all
+mostly did until around 2015, when the <em>Composer</em> dependency management tool became popular, even prompting a rare
+mention for PHP in the ThoughtWorks Technology Radar.</p>
+<h3>Composer</h3>
+<p>Composer is primarily a tool to help you add third party libraries and frameworks to your PHP projects, but since it
+includes code to help us load the classes those libraries declare it makes sense to also use it to help us load our own
+classes.</p>
+<p>First check if you have composer installed - run <code>composer about</code>. On some systems it may be called <code>composer.phar</code>
+instead of composer. If you have it, you should see &quot;Composer - Dependency Manager for PHP&quot;. If not,
+<a href="https://getcomposer.org/download/">download and install composer from getcomposer.org</a>, then come back to this page. I
+suggest installing it to somewhere on your executable PATH, and naming it <code>composer</code> rather than <code>composer.phar</code>.</p>
+<p>Let's adjust our script to use composer instead of require_once. First delete the require_once statement, to get back
+to the class not found error we had before.</p>
+<p>Create a subdirectory <code>src</code> and move Planet.php inside <code>src</code>. It's generally a good idea to have this to keep the bulk
+of our source code separate from everything else in our project, e.g. the entry point file, any docs we might want to write,
+tool config etc. </p>
+<p>Composer works on a project-by-project basis. To set it up for your a project, you need to create a <code>composer.json</code> file.
+To start with, just put an empty json object in this file:</p>
+<pre><code class="language-json">{
+}</code></pre>
+<p>You can now run <code>composer install</code>. Composer should create a <code>vendor</code> subdirectory. Everything you install to you project
+through composer will be in that directory. You would normally want to exclude vendor from source control.</p>
+<p>Now we need to tell composer how to load your classes. The PSR-4 scheme is a standard way of translating between PHP
+class names and file paths. Edit composer.json to look like the following:</p>
+<pre><code class="language-json">{
+    "autoload": {
+        "psr-4": {
+            "PhpAsASecondLanguage\\": "src/"
+        }
+    }
+}</code></pre>
+<p>Re-run <code>composer install</code>, and then edit start.php to require Composer's autoloader:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once __DIR__. '/vendor/autoload.php';
+
+$planet = new Planet('Neptune', 0);
+echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";
+</code></pre>
+<p>As long as we keep our file names matching our class names, Composer will automatically load any class we need, and
+only when we need it.</p>
+<p>If you run <code>php start.php</code> you should once again learn the population of Neptune.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Hello, world.</h1>
+<p>At this point we're ready to start writing in PHP. Make a new folder for your PHP scripts.</p>
+<p>If you have a favourite text editor or integrated development environment, such as vim, atom, or vs-code you may want to
+stick with that, but the best tool for editing PHP code is almost certainly JetBrains'
+<a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a>. PhpStorm is free for 30 days, but will demand money after that.</p>
+<p>Make a new file called <code>hello.php</code>, and type in the following:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+echo "Hello, world.\n";</code></pre>
+<p>Save the file, and go to your command line. Navigate to your PHP scripts folder, and run your first PHP program by
+typing <code>php hello.php</code>. You should see:</p>
+<pre><code class="language-shell">$ php hello.php
+Hello, world
+$</code></pre>
+<p>Every PHP file should start with <code>&lt;?php declare(strict_types=1);</code> . This tells the PHP interpreter that you're writing
+PHP, and <code>strict_types</code> tells PHP not to try to guess what you mean so much. Historically PHP has tended to be very
+loose, and prefer to make the best guess of what's required if it isn't clear instead of giving up. That's probably good
+for writing a website one page at a time, but for applications we need the computer to stop and tell us what's wrong
+if we make a mistake, not plough ahead and give us a wrong result.</p>
+<p><code>echo</code> simply outputs strings of text. We could use <code>print</code>, which is quicker to say, but we prefer <code>echo</code>, which is
+20% shorter to write.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

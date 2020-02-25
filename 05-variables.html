@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Variables, arrays and loops</h1>
+<p>Variables in PHP always have a dollar sign <code>$</code> at the start of their names, and you declare a variable by assigning a
+value to it. PHP <em>interpolates</em> double-quoted strings with variables. Edit hello.php to use a variable:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+$planet = "earth";
+
+echo "Hello, $planet.\n";
+</code></pre>
+<p>You can probably guess what this will do when you run it on your command line or serve it to your browser.</p>
+<h2>Arrays and loops</h2>
+<p>PHP has a very versatile built-in type called <code>array</code>. You're unlikely to find much PHP code that doesn't use arrays
+extensively, but they are easy to overuse at the cost of other more expressive types. Despite the name, a PHP <code>array</code>
+isn't really an <em>array</em> as you may know it from other languages. A PHP array is an <strong>ordered iterable dictionary, with keys
+and values</strong>. The keys may be strings or integers, and by default will be sequential integers starting at zero. The
+values can be anything that could go in a variable, including more arrays.</p>
+<p>An array is not an object in PHP — we will get on to objects later.</p>
+<p>Let's edit our script to declare an array and iterate through it:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+$planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+
+foreach ($planets as $planet) {
+    echo "Hello, $planet.\n";
+}
+
+$dwarfPlanet = 'Pluto';
+echo "Hello, $dwarfPlanet.\n";</code></pre>
+<p>If you run this you should see:</p>
+<pre><code class="language-shell">$ php hello.php 
+Hello, Mercury.
+Hello, Venus.
+Hello, Earth.
+Hello, Mars.
+Hello, Jupiter.
+Hello, Saturn.
+Hello, Uranus.
+Hello, Neptune.
+Hello, Pluto.
+</code></pre>
+<p><code>foreach</code> assigns each value from the array to the <code>$planet</code> variable in turn. We edit the script to ask it to give us
+the numeric keys that were implicitly set on line 3:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+$planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+
+foreach ($planets as $number =&gt; $planet) {
+    echo "Hello, $planet, you are planet number $number.\n";
+}
+
+$dwarfPlanet = 'Pluto';
+echo "Hello, $dwarfPlanet.\n";</code></pre>
+<p>The PHP manual lists <a href="https://www.php.net/manual/en/ref.array.php">81 functions for manipulating arrays</a>. For now let's
+just try one: <a href="https://www.php.net/manual/en/function.natsort.php">natsort</a>. Add new line before <code>foreach</code>:</p>
+<pre><code class="language-php">natsort($planets);</code></pre>
+<p>Re-run the script - the planets are now listed in alphabetical order. But notice that the array keys have not changed -
+Mercury is still planet number <code>0</code>, it's just that <code>0</code> now happens to come after <code>3</code>. PHP array keys can come in any
+order.</p>
+<h2>Associative arrays</h2>
+<p>We can also assign array keys explicitly. When we're interested in the keys of an array we call it an
+<em>associative array</em>. For example:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+$planetPopulations = [
+    'Mercury' =&gt; 0,
+    'Venus' =&gt; 0,
+    'Earth' =&gt; 7.7 * 10**9,
+    'Mars' =&gt; 0,
+    'Jupiter' =&gt; 0,
+    'Saturn' =&gt; 0,
+    'Uranus' =&gt; 0,
+    'Neptune' =&gt; 0,
+];
+
+echo "The population of Earth is {$planetPopulations['Earth']}.\n";</code></pre>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

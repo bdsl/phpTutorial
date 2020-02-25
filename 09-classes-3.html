@@ -1,0 +1,156 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Classes Part 3</h1>
+<h2>Static methods</h2>
+<p>Not all the methods on a class have to run in the context of an object. Methods that work without a <code>$this</code> object
+instance are called static methods. Let's add a static method to the Planet class in <code>src/Planet.php</code>:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+final class Planet
+{
+    private string $name;
+
+    private float $populationSize;
+
+    public function __construct(string $name, float $populationSize) 
+    {
+        $this-&gt;name = $name;
+        $this-&gt;populationSize = $populationSize;
+    }
+
+   public function getName(): string
+   {
+       return $this-&gt;name;
+   }
+
+   public function getPopulationSize(): float
+   {
+       return $this-&gt;populationSize;
+   }
+
+   public static function earth(): self
+   {
+       return new self('Earth', 7.7 * 10**9);
+   }
+}</code></pre>
+<!-- 
+  Where is self officially defined? It isn't listed at https://www.php.net/manual/en/reserved.keywords.php . Only
+  mentioned in passing at https://www.php.net/manual/en/language.oop5.basic.php . 
+  -->
+<p>The <code>self</code> keyword refers to whatever class it's written in. It's more convenient to write <code>self</code> than to repeat
+<code>Planet</code> many times.</p>
+<p>And let's edit start.php:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once __DIR__. '/vendor/autoload.php';
+
+$planet = Planet::Earth();
+echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
+<p>The double colon is officially called the <strong>Scope Resolution Operator</strong>. It access properties and methods of classes
+without going through an object. In this case our method returns an instance of the class, but it could
+do anything.</p>
+<h2>Object Identity</h2>
+<p>A PHP variable can't actually hold an object - instead it holds an <strong>object identifier</strong>, also known as a <strong>reference</strong>.</p>
+<p>To objects created the same way, with the same properties will have distinct identities. But if one object is created
+and then its assigned to two variables, they will both refer hold identifiers for the same object. This becomes
+important when we make our objects mutable. This extra complexity is a good reason to prefer immutable objects, but
+we will need mutability at times.</p>
+<p>Let's add a function to change the world - edit <code>src/Planet.php</code> again, adding the following function inside the class:</p>
+<pre><code class="language-php">   public function receiveImmigrant(): void
+   {
+       $this-&gt;populationSize++;
+   }</code></pre>
+<p><code>void</code> is the return type for functions that don't actually return any information.</p>
+<p>Let's write a script that illustrates identities. Enter the following in 'identities.php'</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once __DIR__. '/vendor/autoload.php';
+
+$mercury = new Planet('Mercury', 0);
+$secondMercury = new Planet('Mercury', 0);
+$theSameMercury = $mercury;
+
+echo "Mercury is equal to second Mercury:\n";
+var_dump($mercury == $secondMercury);
+echo \PHP_EOL;
+
+echo "But Mercury is not **identical** to second Mercury:\n";
+var_dump($mercury === $secondMercury);
+echo \PHP_EOL;
+
+echo "Mercury is equal **and** identical to the same Mercury:\n";
+var_dump($mercury == $theSameMercury);
+var_dump($mercury === $theSameMercury);
+echo \PHP_EOL;
+
+$mercury-&gt;receiveImmigrant();
+
+echo "Population of Mercury: {$mercury-&gt;getPopulationSize()}.\n";
+echo "Population of second Mercury: {$secondMercury-&gt;getPopulationSize()}.\n";
+echo "Population of the same Mercury: {$theSameMercury-&gt;getPopulationSize()}.\n";</code></pre>
+<p>We see that <code>$mercury</code> and <code>$theSameMercury</code> are just two names for the same object, while <code>$secondMercury</code> is an
+entirely separate object with its own properties, lifecycle, hopes and dreams.</p>
+<p>If we use or write a function that accepts an object as a parameter, or returns an object, it's important to be aware
+that PHP doesn't make a copy of the object - it just copies the identifier. This means that code within and without
+the function can access and potentially change the same object. It's an important part of how communication happens
+between the parts of a PHP program, but it can easily get confusing if not managed carefully.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

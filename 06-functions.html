@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Functions</h1>
+<p>PHP comes with hundreds of built in functions, to sort arrays, find the length of strings, match regexes, or even
+<a href="https://www.php.net/manual/en/function.easter-date.php">get the timestamp corresponding to midnight on Easter of a given year</a>,
+you will inevitably want to define your own functions. Function definitions look like this:</p>
+<pre><code class="language-php">function getGreeting(string $planetName): string
+{
+    return "Hello, $planetName.\n";
+}</code></pre>
+<p>Notice the <strong>type declarations</strong>, <code>string</code> and <code>: string</code>. Strictly speaking these are optional, but you should add
+them whenever you can. Like Typescript, PHP is a <em>gradually typed</em> language. However unlike Typescript, which does
+type checking in the compiler, PHP applies type checking only when the relevant part of your program runs. Let's see
+an example:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+function getGreeting(string $planetName): string
+{
+    return "Hello, $planetName.\n";
+}
+
+echo getGreeting('Magrathea');
+echo getGreeting(42);</code></pre>
+<p>Running this, you should see something like:</p>
+<pre><code class="language-text">Hello, Magrathea.
+PHP Fatal error:  Uncaught TypeError: Argument 1 passed to getGreeting() must be of the type string, int given, called in functions.php on line 9 and defined in functions.php:3
+Stack trace:
+#0 functions.php(9): getGreeting()
+#1 {main}
+  thrown in functions.php on line 3</code></pre>
+<p>The first part of the program ran fine, but attempting to pass an integer to a function that we've declared with a
+string parameter was a fatal error and caused a crash. If we'd tried to return anything other than a string from inside
+the function that would also be a fatal error.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

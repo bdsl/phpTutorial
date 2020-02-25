@@ -1,0 +1,160 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PSL - PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Testing</h1>
+<p>If we want to work on even a moderately complex program over time, we need automated testing - manually testing
+everything every time we make a change would quickly become unsustainable.</p>
+<h2>Installing PHPUnit</h2>
+<p>The leading test framework for PHP is Sebastian Bergmann's PHPUnit.</p>
+<p>Since we already have composer set up for our project, we can use that to install PHPUnit in the vendor directory. Run:</p>
+<pre><code>composer require --dev phpunit/phpunit</code></pre>
+<p>Composer also automatically downloads and installs all the libraries that PHPUnit depends on, and the dependencies of
+its dependencies, etc.</p>
+<p>We use the <code>--dev</code> option because PHPUnit is a tool for developers, and not a library that our program would rely on
+in production. If we wanted to prepare a copy of our program to install on a server, we would use the <code>--no-dev</code> option
+of <code>composer install</code> to leave out PHPUnit.</p>
+<p>When we ran the require command composer.json edited our <code>composer.json</code> file to record our updated requirements.
+<code>composer.json</code> should now look like:</p>
+<pre><code class="language-json">{
+    "autoload": {
+        "psr-4": {
+            "PhpAsASecondLanguage\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}</code></pre>
+<p>The last major release of PHPUnit was 9.0, so composer has assumed we will always want whatever the latest PHPUnit
+release in the 9 series is. The 10 series is not expected to be compatible with code written for PHPUnit 9, so composer
+won't install that unless we edit composer json. Composer works best with dependencies that use <em>semantic versioning</em>,
+aka semver.</p>
+<p>Composer has also created a new file for us, <code>composer.lock</code>. This has metadata about the exact versions of the packages
+installed. At the time of writing it shows me that PHPUnit is at version 9.0.1, and I can see the details of 29 other
+packages that have been installed because PHPUnit depends on them directly or indirectly. The <code>composer show</code> command
+will output the list of installed packages in a much more consice format.</p>
+<h2>Writing a test</h2>
+<p>Let's write our first test. Create a <code>test</code> subdirectory next to <code>src</code>, and write the following in <code>test/PlanetTest.php</code> </p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+use PHPUnit\Framework\TestCase;
+
+final class PlanetTest extends TestCase
+{
+    private Planet $SUT; // SUT = Subject Under Test
+
+    public function setUp(): void
+    {
+        $this-&gt;SUT = new Planet('planet name', 0);
+    }
+
+    public function test_it_can_accept_immigrant(): void
+    {
+        $this-&gt;assertSame(0.0, $this-&gt;SUT-&gt;getPopulationSize());
+        $this-&gt;SUT-&gt;receiveImmigrant();
+        $this-&gt;assertSame(1.0, $this-&gt;SUT-&gt;getPopulationSize());
+    }
+}</code></pre>
+<p>The new keyword here is <code>extends</code>. This means that our class is an extension, or subclass of PHPUnit's <code>TestCase</code> class,
+which is how PHPUnit is designed to be used. If <code>TestCase</code> has been marked <code>final</code> we wouldn't be able to extend it.</p>
+<p>If you're not on PHP 7.4, remember to remove the <code>Planet</code> property type for the SUT, and replace it with a docbloc as we
+did for the properties of Planet itself.</p>
+<p>It's prudent to see a test fail at least once before believing what it says when it passes. To make it fail, comment out
+<code>$this-&gt;populationSize++;</code> in <code>src/Planet.php</code>:</p>
+<p><code>// $this-&gt;populationSize++;</code></p>
+<p>Now run the PHPUnit command:</p>
+<pre><code class="language-shell">vendor/bin/phpunit test</code></pre>
+<p>This will search for any filenames ending in <code>Test.php</code> in the test directory. In each test case any public function
+whose name starts with <code>test</code> is considered a test. For every test PHPUnit creates an instance of the class, calls the
+setup function, then calls the test function, records the results, and then throws away the object. So if we had two test
+it would run the set up function twice. If an object is referenced only by garbage it is garbage, so when the test case
+object is thrown away the Planet is thrown away too, and any mutations to the planet will not affect the next test.</p>
+<p>The output from PHPUnit should look like:</p>
+<pre><code class="language-text">PHPUnit 9.0.1 by Sebastian Bergmann and contributors.
+
+F                                                                   1 / 1 (100%)
+
+Time: 36 ms, Memory: 4.00 MB
+
+There was 1 failure:
+
+1) PhpAsASecondLanguage\PlanetTest::test_it_can_accept_immigrant
+Failed asserting that 0.0 is identical to 1.0.
+
+/tmp/composerPlayground/test/PlanetTest.php:20
+
+FAILURES!
+Tests: 1, Assertions: 2, Failures: 1.</code></pre>
+<p>Fix the Planet class putting the increment back in, and re-run the PHPUnit command. We should now see some happier
+output:</p>
+<pre><code class="language-text">PHPUnit 9.0.1 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+
+Time: 35 ms, Memory: 4.00 MB
+
+OK (1 test, 2 assertions)</code></pre>
+<p>Writing tests is a huge topic, which we can't cover in detail here. PHPUnit has excellent
+<a href="https://phpunit.readthedocs.io/en/9.0/index.html">official documentation</a>. You might choose to do
+Test Driven Development (TDD) / Behaviour Driven Development (BDD) and write your tests before writing the
+production code that they cover. </p>
+<p>Some other major test frameworks for PHP are <a href="http://www.phpspec.net/en/stable/">PHPSpec</a> and
+<a href="https://docs.behat.org/en/latest/">Behat</a>, which are both designed around the BDD approach, which
+uses the language of <em>executable specifications</em> rather than tests. The major difference is that in PHPSpec, as with
+PHPUnit, you code in PHP. In Behat you code in a separate language called <code>gherkin</code>, designed to be readable by project
+stakeholders who haven't been trained in programming.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Multiple versions of this site are currently online as CircleCI artifacts. This version generated Tue, 25 Feb 2020 20:04.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>
