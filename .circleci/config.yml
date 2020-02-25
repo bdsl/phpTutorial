@@ -54,7 +54,8 @@ jobs:
       - gh-pages/deploy:
           ssh-fingerprints: '73:52:89:88:54:e7:4b:5a:c1:25:9b:db:85:d7:fc:a3'
           attach-workspace: true
-          build-dir: project/generated
+          build-dir: ~/project/generated
+          workspace-root: ~/project
 workflows:
   Workflow:
     jobs:
