@@ -65,7 +65,7 @@ jobs:
             git add --no-ignore-removal .
             git config user.email ci@circleci
             git config user.name "Circle CI"
-            git commit -m "Update GH Pages based on CircleCI Build $CIRCLE_BUILD_NUM"
+            git commit -m "Update GH Pages based on CircleCI Build $CIRCLE_BUILD_NUM [ci skip]"
             git config --global push.default simple
             git push
 workflows:
