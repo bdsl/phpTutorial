@@ -53,7 +53,7 @@ load it again, even if multiple parts of our program have to declare that they n
 
 But adding a `require_once` statement every time we need to use a class can quickly become tedious. It's what we all 
 mostly did until around 2015, when the *Composer* dependency management tool became popular, even prompting a rare
-mention for PHP in the ThoughWorks Technology Radar.
+mention for PHP in the ThoughtWorks Technology Radar.
 
 ### Composer
 

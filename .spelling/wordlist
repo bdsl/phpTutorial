@@ -4,6 +4,7 @@ Brumbaugh's
 CMS
 CentOs
 CircleCI
+DocBlock
 DocBlocks
 Homebrew
 Http
@@ -26,10 +27,13 @@ PHP
 PHPDoc
 PHPUnit
 PSL
+PSR
 PhpStorm
 Remi's
+SQLite
 Subclassing
 Templating
+ThoughtWorks
 TypeError
 TypeScript
 XAMPP
@@ -47,7 +51,6 @@ devs
 disprefer
 dnf
 docblock
-DocBlock
 dwarfPlanet
 elseif
 enddeclare
@@ -74,6 +77,7 @@ namespace
 namespaces
 natsort
 perl
+phar
 php
 planetName
 planetPopulations
