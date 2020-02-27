@@ -61,10 +61,10 @@ echo "Hello, $planet.\n";
 <h2>Arrays and loops</h2>
 <p>PHP has a very versatile built-in type called <code>array</code>. You're unlikely to find much PHP code that doesn't use arrays
 extensively, but they are easy to overuse at the cost of other more expressive types. Despite the name, a PHP <code>array</code>
-isn't really an <em>array</em> as you may know it from other languages. A PHP array is an <strong>ordered iterable dictionary, with keys
+isn't really an <em>array</em> as you may know it from other languages. A PHP array is an <strong>ordered iterable map, with keys
 and values</strong>. The keys may be strings or integers, and by default will be sequential integers starting at zero. The
 values can be anything that could go in a variable, including more arrays.</p>
-<p>An array is not an object in PHP — we will get on to objects later.</p>
+<p>An array is not an object in PHP. We will cover objects later.</p>
 <p>Let's edit our script to declare an array and iterate through it:</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
@@ -77,7 +77,7 @@ foreach ($planets as $planet) {
 $dwarfPlanet = 'Pluto';
 echo "Hello, $dwarfPlanet.\n";</code></pre>
 <p>If you run this you should see:</p>
-<pre><code class="language-shell">$ php hello.php 
+<pre><code class="language-shell">$ php hello.php
 Hello, Mercury.
 Hello, Venus.
 Hello, Earth.
@@ -88,8 +88,8 @@ Hello, Uranus.
 Hello, Neptune.
 Hello, Pluto.
 </code></pre>
-<p><code>foreach</code> assigns each value from the array to the <code>$planet</code> variable in turn. We edit the script to ask it to give us
-the numeric keys that were implicitly set on line 3:</p>
+<p><code>foreach</code> assigns each value from the array to the <code>$planet</code> variable in turn. We edit the script to print keys as well
+as values:</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
 $planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
@@ -101,10 +101,10 @@ foreach ($planets as $number =&gt; $planet) {
 $dwarfPlanet = 'Pluto';
 echo "Hello, $dwarfPlanet.\n";</code></pre>
 <p>The PHP manual lists <a href="https://www.php.net/manual/en/ref.array.php">81 functions for manipulating arrays</a>. For now let's
-just try one: <a href="https://www.php.net/manual/en/function.natsort.php">natsort</a>. Add new line before <code>foreach</code>:</p>
-<pre><code class="language-php">natsort($planets);</code></pre>
-<p>Re-run the script - the planets are now listed in alphabetical order. But notice that the array keys have not changed -
-Mercury is still planet number <code>0</code>, it's just that <code>0</code> now happens to come after <code>3</code>. PHP array keys can come in any
+try one: <a href="https://www.php.net/manual/en/function.array_reverse.php">array_reverse</a>. Add new line before <code>foreach</code>:</p>
+<pre><code class="language-php">$planets = array_reverse($planets, true);</code></pre>
+<p>Re-run the script - the planets are now listed in reverse order. But notice that the array keys have not changed -
+Mercury is still planet number <code>0</code>, it's just that <code>0</code> now comes last. PHP array keys can come in any
 order.</p>
 <h2>Associative arrays</h2>
 <p>We can also assign array keys explicitly. When we're interested in the keys of an array we call it an
@@ -138,7 +138,7 @@ echo "The population of Earth is {$planetPopulations['Earth']}.\n";</code></pre>
         </em>
     </p>
 
-    <p><em>Site built Tue, 25 Feb 2020 20:45.</em></p>
+    <p><em>Site built Thu, 27 Feb 2020 21:58.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>

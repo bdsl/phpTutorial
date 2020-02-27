@@ -62,7 +62,7 @@ final class Planet
 
     private float $populationSize;
 
-    public function __construct(string $name, float $populationSize) 
+    public function __construct(string $name, float $populationSize)
     {
         $this-&gt;name = $name;
         $this-&gt;populationSize = $populationSize;
@@ -83,9 +83,9 @@ final class Planet
        return new self('Earth', 7.7 * 10**9);
    }
 }</code></pre>
-<!-- 
+<!--
   Where is self officially defined? It isn't listed at https://www.php.net/manual/en/reserved.keywords.php . Only
-  mentioned in passing at https://www.php.net/manual/en/language.oop5.basic.php . 
+  mentioned in passing at https://www.php.net/manual/en/language.oop5.basic.php .
   -->
 <p>The <code>self</code> keyword refers to whatever class it's written in. It's more convenient to write <code>self</code> than to repeat
 <code>Planet</code> many times.</p>
@@ -98,22 +98,21 @@ require_once __DIR__. '/vendor/autoload.php';
 
 $planet = Planet::Earth();
 echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
-<p>The double colon is officially called the <strong>Scope Resolution Operator</strong>. It access properties and methods of classes
-without going through an object. In this case our method returns an instance of the class, but it could
-do anything.</p>
+<p>The double colon is the <strong>Scope Resolution Operator</strong>. It accesses static methods (and properties) of classes - there is
+no need to have an object first. In this case our method returns an instance of the class, but it could do anything.</p>
 <h2>Object Identity</h2>
 <p>A PHP variable can't actually hold an object - instead it holds an <strong>object identifier</strong>, also known as a <strong>reference</strong>.</p>
-<p>To objects created the same way, with the same properties will have distinct identities. But if one object is created
-and then its assigned to two variables, they will both refer hold identifiers for the same object. This becomes
-important when we make our objects mutable. This extra complexity is a good reason to prefer immutable objects, but
-we will need mutability at times.</p>
+<p>Two objects created the same way, with the same properties will have distinct identities. But if one object is created
+and then assigned to two variables, they will both hold identifiers for the same object. This becomes important when we
+make our objects mutable. This extra complexity is a good reason to prefer immutable objects, but sometimes we need
+mutability.</p>
 <p>Let's add a function to change the world - edit <code>src/Planet.php</code> again, adding the following function inside the class:</p>
 <pre><code class="language-php">   public function receiveImmigrant(): void
    {
        $this-&gt;populationSize++;
    }</code></pre>
 <p><code>void</code> is the return type for functions that don't actually return any information.</p>
-<p>Let's write a script that illustrates identities. Enter the following in 'identities.php'</p>
+<p>Now let's write a script to illustrate object identities. Enter the following in 'identities.php'</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
 namespace PhpAsASecondLanguage;
@@ -144,10 +143,10 @@ echo "Population of second Mercury: {$secondMercury-&gt;getPopulationSize()}.\n"
 echo "Population of the same Mercury: {$theSameMercury-&gt;getPopulationSize()}.\n";</code></pre>
 <p>We see that <code>$mercury</code> and <code>$theSameMercury</code> are just two names for the same object, while <code>$secondMercury</code> is an
 entirely separate object with its own properties, lifecycle, hopes and dreams.</p>
-<p>If we use or write a function that accepts an object as a parameter, or returns an object, it's important to be aware
-that PHP doesn't make a copy of the object - it just copies the identifier. This means that code within and without
-the function can access and potentially change the same object. It's an important part of how communication happens
-between the parts of a PHP program, but it can easily get confusing if not managed carefully.</p>
+<p>If a function accepts an object as a parameter, or returns an object, PHP doesn't make a copy of the object - it just
+copies the identifier. This means that code within and without the function can access and potentially change the same
+object. It's an important part of how communication happens between the parts of a PHP program, but it can easily get
+confusing if not managed carefully.</p>
     </article>
 
     <div id="byline">
@@ -163,7 +162,7 @@ between the parts of a PHP program, but it can easily get confusing if not manag
         </em>
     </p>
 
-    <p><em>Site built Tue, 25 Feb 2020 20:45.</em></p>
+    <p><em>Site built Thu, 27 Feb 2020 21:58.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>

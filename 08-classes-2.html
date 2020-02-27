@@ -54,8 +54,8 @@ to work.</p>
 <p>PHP works by executing whatever script we give it from beginning to end. It won't run anything inside a class unless
 we that script tells it to, so every PHP program needs at least one line that isn't part of any class as an entry-point.
 There is no equivalent to the <code>main</code> function of languages like C and Java.</p>
-<p>By convention, and to follow the <strong>PSR-1</strong> coding standard, we always put the entry point in a separate file to the
-class declaration.</p>
+<p>By convention, and to follow the <a href="https://www.php-fig.org/psr/psr-1/">PSR-1</a> coding standard, we always put the entry
+point in a separate file to the class declaration.</p>
 <p>Let's write a simple script to create a planet and print out its details. Since at the moment Planet is just a data
 holder the script won't be too exiting.</p>
 <p>Write the following in a file called start.php</p>
@@ -66,12 +66,12 @@ namespace PhpAsASecondLanguage;
 $planet = new Planet('Neptune', 0);
 
 echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
-<p>The <code>new</code> keyword creates objects instances from classes, and automatically runs any constructor with the arguments we pass.</p>
+<p>The <code>new</code> keyword creates objects instances from classes, and automatically calls any constructor the class has.</p>
 <p>We can try running this now but it won't work just yet, because we need to link it up with <code>Planet.php</code>. When you type
 <code>php start.php</code> you should see <code>PHP Fatal error:  Uncaught Error: Class 'Planet' not found</code>.</p>
 <h2>Linking files together</h2>
 <p>There are two main ways to link files together. The old way is <strong>require_once</strong>, and the new ways is <strong>composer</strong>. We'll
-start with require_once, but for all but the simplest of scripts we will want to use composer.</p>
+start with require_once.</p>
 <h3>Require_once</h3>
 <p>Edit start.php to make it look like this:</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
@@ -85,14 +85,15 @@ $planet = new Planet('Neptune', 0);
 echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulationSize()}.\n";</code></pre>
 <p>Run the script again, and you should now see <code>Planet Neptune has a population of 0.</code>. The require_once statement
 tells PHP to process the contents of the given file as if it had been pasted in to the current script, ignoring
-the <code>&lt;?php</code> opening tag and the <code>declare</code>. The once part means that if we require the same file more than once PHP will
-skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no need to
-load it again, even if multiple parts of our program have to declare that they need that class.</p>
+the <code>&lt;?php</code> opening tag and the <code>declare</code>. The once part means that if we <code>require_once</code> the same file more than once
+PHP will skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no
+need to load it again, even if multiple parts of our program have to declare that they need that class.</p>
 <p><code>__DIR__</code> is a PHP magic constant that refers to the directory of whatever file its used in. The dot <code>.</code> is PHP's string
 concatenation operator.</p>
 <p>But adding a <code>require_once</code> statement every time we need to use a class can quickly become tedious. It's what we all
-mostly did until around 2015, when the <em>Composer</em> dependency management tool became popular, even prompting a rare
-mention for PHP in the ThoughtWorks Technology Radar.</p>
+mostly did until around 2015, when the <em>Composer</em> dependency management tool became popular, even prompting a <a href="https://www.thoughtworks.com/radar/tools/composer">rare
+mention</a> for PHP in the ThoughtWorks Technology Radar. Nowadays we
+almost always want to use Composer.</p>
 <h3>Composer</h3>
 <p>Composer is primarily a tool to help you add third party libraries and frameworks to your PHP projects, but since it
 includes code to help us load the classes those libraries declare it makes sense to also use it to help us load our own
@@ -105,7 +106,7 @@ suggest installing it to somewhere on your executable PATH, and naming it <code>
 to the class not found error we had before.</p>
 <p>Create a subdirectory <code>src</code> and move Planet.php inside <code>src</code>. It's generally a good idea to have this to keep the bulk
 of our source code separate from everything else in our project, e.g. the entry point file, any docs we might want to write,
-tool config etc. </p>
+tool config etc.</p>
 <p>Composer works on a project-by-project basis. To set it up for your a project, you need to create a <code>composer.json</code> file.
 To start with, just put an empty json object in this file:</p>
 <pre><code class="language-json">{
@@ -133,6 +134,8 @@ echo "Planet {$planet-&gt;getName()} has a population of {$planet-&gt;getPopulat
 </code></pre>
 <p>As long as we keep our file names matching our class names, Composer will automatically load any class we need, and
 only when we need it.</p>
+<p>Of course technically we haven't got rid of the <code>require_once</code> statement, but by requiring the autoloader we won't
+need to add any more require statements, however classes we use in our program.</p>
 <p>If you run <code>php start.php</code> you should once again learn the population of Neptune.</p>
     </article>
 
@@ -149,7 +152,7 @@ only when we need it.</p>
         </em>
     </p>
 
-    <p><em>Site built Tue, 25 Feb 2020 20:45.</em></p>
+    <p><em>Site built Thu, 27 Feb 2020 21:58.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>

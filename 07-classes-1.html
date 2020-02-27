@@ -51,7 +51,7 @@
         <h1>Classes and Objects</h1>
 <p>PHP supports class-based object oriented programming, heavily influenced by Java and similar languages. This is
 different to the prototype based OO in JavaScript.</p>
-<p>In the sort of PHP code I write almost 100% of the code is in a project is in classes - some classes are used to make
+<p>In the sort of PHP code I write almost 100% of the code in a project is in classes - some classes are used to make
 objects, and others may just be convenient wrappers around groups of functions.</p>
 <p>In PHP every object is an <strong>instance</strong> of a class, so you have to have a class before you can have an object. Let's write
 a class to let us make Planet objects. How to write classes changed a bit in PHP 7.4. Enter the
@@ -66,7 +66,7 @@ final class Planet
 
     private float $populationSize;
 
-    public function __construct(string $name, float $populationSize) 
+    public function __construct(string $name, float $populationSize)
     {
         $this-&gt;name = $name;
         $this-&gt;populationSize = $populationSize;
@@ -95,9 +95,10 @@ to:</p>
     /**
      * @var float
      */
-    private float $populationSize;</code></pre>
+    private $populationSize;</code></pre>
 <p>These DocBlocks are ignored by the PHP engine, but they are very useful for us, and many tools and IDEs will read them.
-The code inside the docblock is written in the <strong>PHPDoc</strong> language.</p>
+The code inside the docblock is written in the <a href="https://docs.phpdoc.org/latest/references/phpdoc/index.html">PHPDoc</a>
+language.</p>
 <h2>Running the code</h2>
 <p>Run <code>php Planet.php</code>. You should see no output - a class by itself doesn't do anything. We will write code to use this
 class on the next page.</p>
@@ -113,28 +114,29 @@ namespace is effectively a prefix, so the full name of the class is <code>\PhpAs
 <p>Planet is a <strong>final</strong> class. This prevents any other classes being written as <em>subclasses</em> of Planet. Subclassing is
 beyond the scope of this tutorial, but for now we can say that it adds significant complexity, and if we don't need it
 we should probably avoid it. It's therefore a good practice to make classes final by default - we can always delete the
-word final if we ever find we do need to make a <em>subclasses</em> of Planet.</p>
+word final if we ever find we do need to make a subclasses of Planet.</p>
 </li>
 <li>
 <p>Planet has <code>name</code> and <code>populationSize</code> <strong>properties</strong>. When we create Planet objects every object will have its own copy
-of these properties. <code>private</code> is the properties <em>visibility</em> - that means that the properties can only be directly read
-or written by code within the Planet class. In the PHP 7.4 code they are <strong>typed properties</strong>, which that PHP will
+of these properties. The properties have <code>private</code> <strong>visibility</strong> - that means that the properties can only be directly read
+or written by code within the Planet class.</p>
+<p>In the PHP 7.4 code they are <strong>typed properties</strong>, so PHP will
 do a type check at run time whenever we assign values to the properties, and it will only allow us to assign strings of
-text and and floating point numbers - attempting to assign anything else would a fatal error.</p>
-<p>We would also get a fatal error if we tried to read these typed properties before they are initialised.</p>
+text and and floating point numbers - attempting to assign anything else would cause a fatal error.</p>
+<p>We would also get a fatal error if we tried to read these typed properties before assigning values to them.</p>
 </li>
 <li>
-<p>Next we have three <strong>functions</strong>, also known as methods. These all have <em>public</em> visibility, which means we can call them from anywhere.</p>
+<p>Next we have three class <strong>functions</strong>, also known as methods. These all have <code>public</code> visibility, which means we can
+call them from anywhere.</p>
 <p>Functions whose names start with <code>__</code> are considered <strong>Magic Methods</strong> in PHP - they have special meanings given by the
 language. <code>__construct</code> is the <strong>Constructor</strong>, and will be automatically called whenever we create a Planet object with
 the <code>new</code> keyword.</p>
 <p>Finally we have our two <em>getter</em> functions. Since the properties are private, these public functions are needed to allow
-code outside the class to read the properties. By keeping the properties private and creating getters but not setters
-we can create an immutable object. It's verbose, but it's a lot easier to understand what's happening in a big project
+code outside the class to read the properties. It's verbose, but it's a lot easier to understand what's happening in a big project
 with a class like this than it would be if the properties were public and code from lots of other places could be
 writing to them.</p>
 <p>These functions will be run with a given object instance of the class. The <code>$this</code> variable will refer to that
-object. We use the arrow <code>-&gt;</code> operator to access the properties and methods of any object. </p>
+object. We use the arrow <code>-&gt;</code> operator to access the properties and methods of any object.</p>
 <p>Having getters also means that if we later want to change the class - perhaps to replace the
 <code>$populationSize</code> property with an array that holds details of every person on the planet - we can edit the code inside
 the getter function and make it return the size of the array. Code that uses this class wouldn't have to be
@@ -160,7 +162,7 @@ JavaScript module that exports some but not all of its symbols.</p>
         </em>
     </p>
 
-    <p><em>Site built Tue, 25 Feb 2020 20:45.</em></p>
+    <p><em>Site built Thu, 27 Feb 2020 21:58.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>
