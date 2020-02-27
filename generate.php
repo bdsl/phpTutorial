@@ -19,10 +19,14 @@ $twig = new \Twig\Environment(
     []
 );
 
+/** @var list<array{path: string, basename: string}> $files */
 $files = $fileystem->listContents('/content');
+
 foreach ($files as $file)
 {
     $markdown = $fileystem->read($file['path']);
+
+    /** @var string $htmlContent */
     $htmlContent = (new Parsedown())->text($markdown);
     $fileystem->write(
         'generated/' . str_replace('.md', '.html', $file['basename']),

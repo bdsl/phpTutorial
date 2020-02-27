@@ -2,6 +2,7 @@
     "require": {
         "erusev/parsedown": "^1.7",
         "league/flysystem": "^1.0",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "psalm/phar": "^3.9"
     }
 }

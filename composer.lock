@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16d9fb2f049a3db3870aecd2fdb8743c",
+    "content-hash": "eed927d71bd15d303438830c6f97f342",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -135,6 +135,37 @@
                 "storage"
             ],
             "time": "2020-02-05T18:14:17+00:00"
+        },
+        {
+            "name": "psalm/phar",
+            "version": "3.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/psalm/phar.git",
+                "reference": "8c01ea7f8c6eba045a9b977ee05cb0bfea1550eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/psalm/phar/zipball/8c01ea7f8c6eba045a9b977ee05cb0bfea1550eb",
+                "reference": "8c01ea7f8c6eba045a9b977ee05cb0bfea1550eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "conflict": {
+                "vimeo/psalm": "*"
+            },
+            "bin": [
+                "psalm.phar"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Composer-based Psalm Phar",
+            "time": "2020-02-19T01:58:24+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
