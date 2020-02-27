@@ -12,3 +12,8 @@ Point your browser at [http://localhost:8080/hello.php](http://localhost:8080/he
 "Hello, world.".
 
 Go back to your command line and press ctrl-c to shut down the server.
+
+This tutorial treats PHP as a general purpose programming language - we won't focus on the specifics of running in a web
+server. In a big web application only a small part of the code may need to deal with getting data in and out through
+HTTP, and usually this will be abstracted away to some extent by a framework like Symfony or Laravel, or a CMS like
+Wordpress or Drupal.
