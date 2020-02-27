@@ -17,12 +17,12 @@ side of our application, but don't have PHP experience from their previous jobs.
 tutorial to recommend they can work through, but I didn't find anything satisfying.
 
 [The tutorial at php.net](https://www.php.net/manual/en/tutorial.php) appears not to have been updated for several years,
-and doesn't even introduce either the `function` or `class` keywords. On the other hand it does show PHP mixed with HTML,
+and doesn't even introduce the `function` or `class` keywords. On the other hand it does show PHP mixed with HTML,
 which I plan to pretend doesn't exist. I think it's now probably worse than useless.
 
 David Brumbaugh's
 [Learn a New Language: Migrating from JavaScript to PHP](https://www.codementor.io/@davidbrumbaugh/migrating-from-javascript-to-php-du1088tr4)
-is much closer to what I want to write, but it's a bit too short. It doesn't explain how to install PHP, or what composer is,
+is much closer to what I want to write, but it's a bit too short. It doesn't explain how to install PHP, or what Composer is,
 and again it prominently covers mixing PHP with HTML. It shows both the pre-and post 5.4 array syntax, whereas I want to
 require the reader to install at least PHP 7.2, and spend little if any time on older versions.
 
