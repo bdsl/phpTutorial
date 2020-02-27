@@ -7,7 +7,7 @@ In the sort of PHP code I write almost 100% of the code is in a project is in cl
 objects, and others may just be convenient wrappers around groups of functions.
 
 In PHP every object is an **instance** of a class, so you have to have a class before you can have an object. Let's write
-a class to let us make Planet objects. How to write classes changed a bit in PHP 7.4. Enter the 
+a class to let us make Planet objects. How to write classes changed a bit in PHP 7.4. Enter the
 following in a file called `Planet.php`:
 
 ```php
@@ -18,10 +18,10 @@ namespace PhpAsASecondLanguage;
 final class Planet
 {
     private string $name;
-    
+
     private float $populationSize;
 
-    public function __construct(string $name, float $populationSize) 
+    public function __construct(string $name, float $populationSize)
     {
         $this->name = $name;
         $this->populationSize = $populationSize;
@@ -42,8 +42,8 @@ final class Planet
 ## Older PHP Versions
 
 `name` and `populationSize` are the properties of the class, and they have `string` and `float` types respectively.
-Before 7.4 PHP didn't allow us to specify types for properties. We still want to know what types of values we intend to 
-put in the properties, so we use a **DocBlock** instead. If you don't have 7.4 yet, change the property declarations 
+Before 7.4 PHP didn't allow us to specify types for properties. We still want to know what types of values we intend to
+put in the properties, so we use a **DocBlock** instead. If you don't have 7.4 yet, change the property declarations
 to:
 
 ```
@@ -51,7 +51,7 @@ to:
      * @var string
      */
     private $name;
-    
+
     /**
      * @var float
      */
@@ -71,7 +71,7 @@ class on the next page.
 Let's read through the class from top to bottom.
 
 * The entire file is in a **namespace**. This is useful to help distinguish our code from other people's code, and
-to distinguish between submodules when our program gets bigger. We will keep all our code in this namespace. The 
+to distinguish between submodules when our program gets bigger. We will keep all our code in this namespace. The
 namespace is effectively a prefix, so the full name of the class is ``\PhpAsASecondLanguage\Planet``.
 
 * Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing is
@@ -90,7 +90,7 @@ text and and floating point numbers - attempting to assign anything else would a
 * Next we have three **functions**, also known as methods. These all have *public* visibility, which means we can call them from anywhere.
 
     Functions whose names start with `__` are considered **Magic Methods** in PHP - they have special meanings given by the
-language. `__construct` is the **Constructor**, and will be automatically called whenever we create a Planet object with 
+language. `__construct` is the **Constructor**, and will be automatically called whenever we create a Planet object with
 the `new` keyword.
 
     Finally we have our two *getter* functions. Since the properties are private, these public functions are needed to allow
@@ -99,15 +99,15 @@ we can create an immutable object. It's verbose, but it's a lot easier to unders
 with a class like this than it would be if the properties were public and code from lots of other places could be
 writing to them.
 
-    These functions will be run with a given object instance of the class. The `$this` variable will refer to that 
-    object. We use the arrow `->` operator to access the properties and methods of any object. 
+    These functions will be run with a given object instance of the class. The `$this` variable will refer to that
+    object. We use the arrow `->` operator to access the properties and methods of any object.
 
-    Having getters also means that if we later want to change the class - perhaps to replace the 
+    Having getters also means that if we later want to change the class - perhaps to replace the
 `$populationSize` property with an array that holds details of every person on the planet - we can edit the code inside
-the getter function and make it return the size of the array. Code that uses this class wouldn't have to be 
+the getter function and make it return the size of the array. Code that uses this class wouldn't have to be
 affected by the change. Changes tend to ripple through a codebase, and one of the most important things to do when
 choosing how to write code is anticipating types of future changes, and putting barriers in place to limit the spread of
 those changes.
 
-If you know JavaScript, you can think of a class with public and private parts as serving a similar purpose to a 
+If you know JavaScript, you can think of a class with public and private parts as serving a similar purpose to a
 JavaScript module that exports some but not all of its symbols.

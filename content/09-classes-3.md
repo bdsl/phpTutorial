@@ -2,7 +2,7 @@
 
 ## Static methods
 
-Not all the methods on a class have to run in the context of an object. Methods that work without a `$this` object 
+Not all the methods on a class have to run in the context of an object. Methods that work without a `$this` object
 instance are called static methods. Let's add a static method to the Planet class in `src/Planet.php`:
 
 ```php
@@ -16,7 +16,7 @@ final class Planet
 
     private float $populationSize;
 
-    public function __construct(string $name, float $populationSize) 
+    public function __construct(string $name, float $populationSize)
     {
         $this->name = $name;
         $this->populationSize = $populationSize;
@@ -39,12 +39,12 @@ final class Planet
 }
 ```
 
-<!-- 
+<!--
   Where is self officially defined? It isn't listed at https://www.php.net/manual/en/reserved.keywords.php . Only
-  mentioned in passing at https://www.php.net/manual/en/language.oop5.basic.php . 
+  mentioned in passing at https://www.php.net/manual/en/language.oop5.basic.php .
   -->
 
-The `self` keyword refers to whatever class it's written in. It's more convenient to write `self` than to repeat 
+The `self` keyword refers to whatever class it's written in. It's more convenient to write `self` than to repeat
 `Planet` many times.
 
 And let's edit start.php:
@@ -116,10 +116,10 @@ echo "Population of second Mercury: {$secondMercury->getPopulationSize()}.\n";
 echo "Population of the same Mercury: {$theSameMercury->getPopulationSize()}.\n";
 ```
 
-We see that `$mercury` and `$theSameMercury` are just two names for the same object, while `$secondMercury` is an 
+We see that `$mercury` and `$theSameMercury` are just two names for the same object, while `$secondMercury` is an
 entirely separate object with its own properties, lifecycle, hopes and dreams.
 
-If a function accepts an object as a parameter, or returns an object, PHP doesn't make a copy of the object - it just 
+If a function accepts an object as a parameter, or returns an object, PHP doesn't make a copy of the object - it just
 copies the identifier. This means that code within and without the function can access and potentially change the same
 object. It's an important part of how communication happens between the parts of a PHP program, but it can easily get
 confusing if not managed carefully.

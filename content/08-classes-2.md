@@ -27,7 +27,7 @@ echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSiz
 
 The `new` keyword creates objects instances from classes, and automatically runs any constructor with the arguments we pass.
 
-We can try running this now but it won't work just yet, because we need to link it up with `Planet.php`. When you type 
+We can try running this now but it won't work just yet, because we need to link it up with `Planet.php`. When you type
 `php start.php` you should see `PHP Fatal error:  Uncaught Error: Class 'Planet' not found`.
 
 ## Linking files together
@@ -60,7 +60,7 @@ load it again, even if multiple parts of our program have to declare that they n
 `__DIR__` is a PHP magic constant that refers to the directory of whatever file its used in. The dot `.` is PHP's string
 concatenation operator.
 
-But adding a `require_once` statement every time we need to use a class can quickly become tedious. It's what we all 
+But adding a `require_once` statement every time we need to use a class can quickly become tedious. It's what we all
 mostly did until around 2015, when the *Composer* dependency management tool became popular, even prompting a rare
 mention for PHP in the ThoughtWorks Technology Radar.
 
@@ -70,8 +70,8 @@ Composer is primarily a tool to help you add third party libraries and framework
 includes code to help us load the classes those libraries declare it makes sense to also use it to help us load our own
 classes.
 
-First check if you have composer installed - run `composer about`. On some systems it may be called `composer.phar` 
-instead of composer. If you have it, you should see "Composer - Dependency Manager for PHP". If not, 
+First check if you have composer installed - run `composer about`. On some systems it may be called `composer.phar`
+instead of composer. If you have it, you should see "Composer - Dependency Manager for PHP". If not,
 [download and install composer from getcomposer.org](https://getcomposer.org/download/), then come back to this page. I
 suggest installing it to somewhere on your executable PATH, and naming it `composer` rather than `composer.phar`.
 
@@ -80,7 +80,7 @@ to the class not found error we had before.
 
 Create a subdirectory `src` and move Planet.php inside `src`. It's generally a good idea to have this to keep the bulk
 of our source code separate from everything else in our project, e.g. the entry point file, any docs we might want to write,
-tool config etc. 
+tool config etc.
 
 Composer works on a project-by-project basis. To set it up for your a project, you need to create a `composer.json` file.
 To start with, just put an empty json object in this file:
@@ -93,7 +93,7 @@ To start with, just put an empty json object in this file:
 You can now run `composer install`. Composer should create a `vendor` subdirectory. Everything you install to you project
 through composer will be in that directory. You would normally want to exclude vendor from source control.
 
-Now we need to tell composer how to load your classes. The PSR-4 scheme is a standard way of translating between PHP 
+Now we need to tell composer how to load your classes. The PSR-4 scheme is a standard way of translating between PHP
 class names and file paths. Edit composer.json to look like the following:
 
 ```json

@@ -1,6 +1,6 @@
 # Testing
 
-If we want to work on even a moderately complex program over time, we need automated testing - manually testing 
+If we want to work on even a moderately complex program over time, we need automated testing - manually testing
 everything every time we make a change would quickly become unsustainable.
 
 ## Installing PHPUnit
@@ -34,7 +34,7 @@ When we ran the `require` command composer.json edited our `composer.json` file 
         "phpunit/phpunit": "^9.0"
     }
 }
-``` 
+```
 
 The last major release of PHPUnit was 9.0, so composer has assumed we will always want whatever the latest PHPUnit
 release in the 9 series is. The 10 series is not expected to be compatible with code written for PHPUnit 9, so composer
@@ -47,7 +47,7 @@ will output the list of installed packages in a much more consice format.
 
 ## Writing a test
 
-Let's write our first test. Create a `test` subdirectory next to `src`, and write the following in `test/PlanetTest.php` 
+Let's write our first test. Create a `test` subdirectory next to `src`, and write the following in `test/PlanetTest.php`
 
 ```php
 <?php declare(strict_types=1);
@@ -121,7 +121,7 @@ FAILURES!
 Tests: 1, Assertions: 2, Failures: 1.
 ```
 
-Fix the Planet class putting the increment back in, and re-run the PHPUnit command. We should now see some happier 
+Fix the Planet class putting the increment back in, and re-run the PHPUnit command. We should now see some happier
 output:
 
 ```text
@@ -134,12 +134,12 @@ Time: 35 ms, Memory: 4.00 MB
 OK (1 test, 2 assertions)
 ```
 
-Writing tests is a huge topic, which we can't cover in detail here. PHPUnit has excellent 
+Writing tests is a huge topic, which we can't cover in detail here. PHPUnit has excellent
 [official documentation](https://phpunit.readthedocs.io/en/9.0/index.html). You might want to do
 Test Driven Development (TDD) and/or Behaviour Driven Development (BDD) and write your tests before writing the
 production code that they cover.
 
-Some other major test frameworks for PHP are [PHPSpec](http://www.phpspec.net/en/stable/) and 
+Some other major test frameworks for PHP are [PHPSpec](http://www.phpspec.net/en/stable/) and
 [Behat](https://docs.behat.org/en/latest/). These are both designed around the BDD approach, which
 uses the language of *executable specifications* rather than tests. A major difference between them is that in PHPSpec,
 as with PHPUnit, you code in PHP. In Behat you code in a separate language called `gherkin`, designed to look like English

@@ -14,7 +14,7 @@ Make a new file called `hello.php`, and type in the following:
 echo "Hello, world.\n";
 ```
 
-Save the file, and go to your command line. Navigate to your PHP scripts folder, and run your first PHP program by 
+Save the file, and go to your command line. Navigate to your PHP scripts folder, and run your first PHP program by
 typing `php hello.php`. You should see:
 
 ```shell script

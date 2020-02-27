@@ -8,7 +8,7 @@ and testing uses. To start it, run:
 ```shell script
 php -S localhost:8080
 ```
-Point your browser at [http://localhost:8080/hello.php](http://localhost:8080/hello.php), and you should see 
+Point your browser at [http://localhost:8080/hello.php](http://localhost:8080/hello.php), and you should see
 "Hello, world.".
 
 Go back to your command line and press ctrl-c to shut down the server.

@@ -42,7 +42,7 @@ echo "Hello, $dwarfPlanet.\n";
 If you run this you should see:
 
 ```shell script
-$ php hello.php 
+$ php hello.php
 Hello, Mercury.
 Hello, Venus.
 Hello, Earth.
@@ -55,7 +55,7 @@ Hello, Pluto.
 
 ```
 
-`foreach` assigns each value from the array to the `$planet` variable in turn. We edit the script to ask it to give us 
+`foreach` assigns each value from the array to the `$planet` variable in turn. We edit the script to ask it to give us
 the numeric keys that were implicitly set on line 3:
 
 ```php
@@ -78,13 +78,13 @@ just try one: [natsort](https://www.php.net/manual/en/function.natsort.php). Add
 natsort($planets);
 ```
 
-Re-run the script - the planets are now listed in alphabetical order. But notice that the array keys have not changed - 
+Re-run the script - the planets are now listed in alphabetical order. But notice that the array keys have not changed -
 Mercury is still planet number `0`, it's just that `0` now happens to come after `3`. PHP array keys can come in any
 order.
 
 ## Associative arrays
 
-We can also assign array keys explicitly. When we're interested in the keys of an array we call it an 
+We can also assign array keys explicitly. When we're interested in the keys of an array we call it an
 *associative array*. For example:
 
 ```php
