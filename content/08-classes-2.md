@@ -7,8 +7,8 @@ PHP works by executing whatever script we give it from beginning to end. It won'
 we that script tells it to, so every PHP program needs at least one line that isn't part of any class as an entry-point.
 There is no equivalent to the `main` function of languages like C and Java.
 
-By convention, and to follow the **PSR-1** coding standard, we always put the entry point in a separate file to the
-class declaration.
+By convention, and to follow the [PSR-1](https://www.php-fig.org/psr/psr-1/) coding standard, we always put the entry
+point in a separate file to the class declaration.
 
 Let's write a simple script to create a planet and print out its details. Since at the moment Planet is just a data
 holder the script won't be too exiting.
@@ -25,7 +25,7 @@ $planet = new Planet('Neptune', 0);
 echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSize()}.\n";
 ```
 
-The `new` keyword creates objects instances from classes, and automatically runs any constructor with the arguments we pass.
+The `new` keyword creates objects instances from classes, and automatically calls any constructor the class has.
 
 We can try running this now but it won't work just yet, because we need to link it up with `Planet.php`. When you type
 `php start.php` you should see `PHP Fatal error:  Uncaught Error: Class 'Planet' not found`.
@@ -33,7 +33,7 @@ We can try running this now but it won't work just yet, because we need to link 
 ## Linking files together
 
 There are two main ways to link files together. The old way is **require_once**, and the new ways is **composer**. We'll
-start with require_once, but for all but the simplest of scripts we will want to use composer.
+start with require_once.
 
 ### Require_once
 
@@ -53,16 +53,17 @@ echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSiz
 
 Run the script again, and you should now see `Planet Neptune has a population of 0.`. The require_once statement
 tells PHP to process the contents of the given file as if it had been pasted in to the current script, ignoring
-the `<?php` opening tag and the `declare`. The once part means that if we require the same file more than once PHP will
-skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no need to
-load it again, even if multiple parts of our program have to declare that they need that class.
+the `<?php` opening tag and the `declare`. The once part means that if we `require_once` the same file more than once
+PHP will skip it on the second and subsequent times. That's what want for a class - once the class is loaded there's no
+need to load it again, even if multiple parts of our program have to declare that they need that class.
 
 `__DIR__` is a PHP magic constant that refers to the directory of whatever file its used in. The dot `.` is PHP's string
 concatenation operator.
 
 But adding a `require_once` statement every time we need to use a class can quickly become tedious. It's what we all
-mostly did until around 2015, when the *Composer* dependency management tool became popular, even prompting a rare
-mention for PHP in the ThoughtWorks Technology Radar.
+mostly did until around 2015, when the *Composer* dependency management tool became popular, even prompting a [rare
+mention](https://www.thoughtworks.com/radar/tools/composer) for PHP in the ThoughtWorks Technology Radar. Nowadays we
+almost always want to use Composer.
 
 ### Composer
 
@@ -122,5 +123,8 @@ echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSiz
 
 As long as we keep our file names matching our class names, Composer will automatically load any class we need, and
 only when we need it.
+
+Of course technically we haven't got rid of the `require_once` statement, but by requiring the autoloader we won't
+need to add any more require statements, however classes we use in our program.
 
 If you run `php start.php` you should once again learn the population of Neptune.
