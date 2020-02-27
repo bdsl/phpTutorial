@@ -3,7 +3,7 @@
 PHP supports class-based object oriented programming, heavily influenced by Java and similar languages. This is
 different to the prototype based OO in JavaScript.
 
-In the sort of PHP code I write almost 100% of the code is in a project is in classes - some classes are used to make
+In the sort of PHP code I write almost 100% of the code in a project is in classes - some classes are used to make
 objects, and others may just be convenient wrappers around groups of functions.
 
 In PHP every object is an **instance** of a class, so you have to have a class before you can have an object. Let's write
@@ -55,11 +55,12 @@ to:
     /**
      * @var float
      */
-    private float $populationSize;
+    private $populationSize;
 ```
 
 These DocBlocks are ignored by the PHP engine, but they are very useful for us, and many tools and IDEs will read them.
-The code inside the docblock is written in the **PHPDoc** language.
+The code inside the docblock is written in the [PHPDoc](https://docs.phpdoc.org/latest/references/phpdoc/index.html)
+language.
 
 ## Running the code
 
@@ -77,25 +78,27 @@ namespace is effectively a prefix, so the full name of the class is ``\PhpAsASec
 * Planet is a **final** class. This prevents any other classes being written as *subclasses* of Planet. Subclassing is
 beyond the scope of this tutorial, but for now we can say that it adds significant complexity, and if we don't need it
 we should probably avoid it. It's therefore a good practice to make classes final by default - we can always delete the
-word final if we ever find we do need to make a *subclasses* of Planet.
+word final if we ever find we do need to make a subclasses of Planet.
 
 * Planet has `name` and `populationSize` **properties**. When we create Planet objects every object will have its own copy
-of these properties. `private` is the properties *visibility* - that means that the properties can only be directly read
-or written by code within the Planet class. In the PHP 7.4 code they are **typed properties**, which that PHP will
+of these properties. The properties have `private` **visibility** - that means that the properties can only be directly read
+or written by code within the Planet class.
+
+    In the PHP 7.4 code they are **typed properties**, so PHP will
 do a type check at run time whenever we assign values to the properties, and it will only allow us to assign strings of
-text and and floating point numbers - attempting to assign anything else would a fatal error.
+text and and floating point numbers - attempting to assign anything else would cause a fatal error.
 
-    We would also get a fatal error if we tried to read these typed properties before they are initialised.
+    We would also get a fatal error if we tried to read these typed properties before assigning values to them.
 
-* Next we have three **functions**, also known as methods. These all have *public* visibility, which means we can call them from anywhere.
+* Next we have three class **functions**, also known as methods. These all have `public` visibility, which means we can 
+call them from anywhere.
 
     Functions whose names start with `__` are considered **Magic Methods** in PHP - they have special meanings given by the
 language. `__construct` is the **Constructor**, and will be automatically called whenever we create a Planet object with
 the `new` keyword.
 
     Finally we have our two *getter* functions. Since the properties are private, these public functions are needed to allow
-code outside the class to read the properties. By keeping the properties private and creating getters but not setters
-we can create an immutable object. It's verbose, but it's a lot easier to understand what's happening in a big project
+code outside the class to read the properties. It's verbose, but it's a lot easier to understand what's happening in a big project
 with a class like this than it would be if the properties were public and code from lots of other places could be
 writing to them.
 
