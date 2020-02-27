@@ -1,8 +1,9 @@
 # Functions
 
-PHP comes with hundreds of built in functions, to sort arrays, find the length of strings, match regexes, or even
-[get the timestamp corresponding to midnight on Easter of a given year](https://www.php.net/manual/en/function.easter-date.php),
-you will inevitably want to define your own functions. Function definitions look like this:
+PHP comes with [hundreds](https://www.php.net/manual/en/funcref.php) of built in functions, to sort arrays, find the
+length of strings, match regexes, or even [get the timestamp corresponding to midnight on Easter of a given
+year](https://www.php.net/manual/en/function.easter-date.php), but you will inevitably want to define your own functions.
+Function definitions look like this:
 
 ```php
 function getGreeting(string $planetName): string
@@ -12,7 +13,7 @@ function getGreeting(string $planetName): string
 ```
 
 Notice the **type declarations**, `string` and `: string`. Strictly speaking these are optional, but you should add
-them whenever you can. Like Typescript, PHP is a *gradually typed* language. However unlike Typescript, which does
+them whenever you can. PHP is a *gradually typed* language, like TypeScript. However unlike Typescript, which does
 type checking in the compiler, PHP applies type checking only when the relevant part of your program runs. Let's see
 an example:
 
