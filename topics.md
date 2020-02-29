@@ -15,7 +15,7 @@ Not in any specific order. Topics for which at least some writing is done are ma
 * Testing (PHPUnit) *
 * Static analysis (Psalm) *
 * Templating (e.g. twig) *
-* How to learn / do more with PHP after tutorial (including links to frameworks, official docs, php weekly / annotated etc)
+* How to learn / do more with PHP after tutorial (including links to frameworks, official docs, php weekly / annotated etc) *
 
 ## PHP Keywords
 Full list of keywords from https://www.php.net/manual/en/reserved.keywords.php
