@@ -27,7 +27,7 @@ When we ran the `require` command composer.json edited our `composer.json` file 
 {
     "autoload": {
         "psr-4": {
-            "PhpAsASecondLanguage\\": "src/"
+            "AModeratelyShortPhpTutorial\\": "src/"
         }
     },
     "require-dev": {
@@ -52,7 +52,7 @@ Let's write our first test. Create a `test` subdirectory next to `src`, and writ
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 use PHPUnit\Framework\TestCase;
 
@@ -112,7 +112,7 @@ Time: 36 ms, Memory: 4.00 MB
 
 There was 1 failure:
 
-1) PhpAsASecondLanguage\PlanetTest::test_it_can_accept_immigrant
+1) AModeratelyShortPhpTutorial\PlanetTest::test_it_can_accept_immigrant
 Failed asserting that 0.0 is identical to 1.0.
 
 /tmp/composerPlayground/test/PlanetTest.php:20

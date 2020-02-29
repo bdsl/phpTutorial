@@ -18,7 +18,7 @@ Write the following in a file called start.php
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 $planet = new Planet('Neptune', 0);
 
@@ -42,7 +42,7 @@ Edit start.php to make it look like this:
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/Planet.php';
 
@@ -101,7 +101,7 @@ class names and file paths. Edit composer.json to look like the following:
 {
     "autoload": {
         "psr-4": {
-            "PhpAsASecondLanguage\\": "src/"
+            "AModeratelyShortPhpTutorial\\": "src/"
         }
     }
 }
@@ -112,7 +112,7 @@ Re-run `composer install`, and then edit start.php to require Composer's autoloa
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__. '/vendor/autoload.php';
 

@@ -42,7 +42,7 @@ Edit our `viewPlanet.php` file to make it use this template:
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -86,7 +86,7 @@ that uses it, and neither will any tools and IDEs we might be using, we should a
 expect to have a `planet` variable, and it will be of type `Planet`. Add the following to the top of the file:
 
 ```twig
-{#  @var planet PhpAsASecondLanguage\Planet #}
+{#  @var planet AModeratelyShortPhpTutorial\Planet #}
 ```
 
 In Twig we use double curly brackets to output dynamic data: Replace `Some Planet` with 

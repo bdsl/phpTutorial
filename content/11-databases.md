@@ -51,7 +51,7 @@ First, let's write a PHP script `src/create-database.php` to create a new databa
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 use PDO;
 
@@ -90,7 +90,7 @@ will need a class that can insert all the planets. Make a file `src/PlanetStore.
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 use PDO;
 
@@ -134,7 +134,7 @@ Now write a script `storePlanets.php` to use this class:
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -191,7 +191,7 @@ Finally we need to make a PHP script to go between this function and the browser
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

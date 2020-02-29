@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 use PDO;
 
 file_put_contents( __DIR__ . '/database.sqlite', '');

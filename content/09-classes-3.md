@@ -8,7 +8,7 @@ instance are called static methods. Let's add a static method to the Planet clas
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 final class Planet
 {
@@ -52,7 +52,7 @@ And let's edit start.php:
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__. '/vendor/autoload.php';
 
@@ -88,7 +88,7 @@ Now let's write a script to illustrate object identities. Enter the following in
 ```php
 <?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__. '/vendor/autoload.php';
 
