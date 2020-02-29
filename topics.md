@@ -11,10 +11,10 @@ Not in any specific order. Topics for which at least some writing is done are ma
 * Functions * 
 * Classes *
 * Loading other files (require_once and / or using composer autoloader) - including namespaces *
-* Databases (PDO with SQLite)
+* Databases (PDO with SQLite) *
 * Testing (PHPUnit) *
 * Static analysis (Psalm)
-* Templating (e.g. twig)
+* Templating (e.g. twig) *
 * How to learn / do more with PHP after tutorial (including links to frameworks, official docs, php weekly / annotated etc)
 
 ## PHP Keywords

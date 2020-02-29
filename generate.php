@@ -14,10 +14,7 @@ $fileystem->deleteDir('generated');
 $fileystem->createDir('generated');
 $fileystem->write('generated/.nojekyll', ''); // stops Github running Jekyll site generator
 
-$twig = new \Twig\Environment(
-    new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates'),
-    []
-);
+$twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates'));
 
 /** @var list<array{path: string, basename: string}> $files */
 $files = $fileystem->listContents('/content');

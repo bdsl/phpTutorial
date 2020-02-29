@@ -6,6 +6,7 @@ Brumbaugh's
 CMS
 CentOs
 CircleCI
+DSN
 DocBlock
 DocBlocks
 Drupal
@@ -35,6 +36,7 @@ PhpAsASecondLanguage
 PhpStorm
 Remi's
 SQLite
+SQLite
 SUT
 Symfony
 Templating
@@ -60,6 +62,8 @@ eval
 getter
 getters
 goto
+html
+http
 instanceof
 insteadof
 isset
@@ -76,11 +80,9 @@ psr
 regexes
 semver
 setUp
+sqlite
 src
 sudo
-tmp
-DSN
-http
-sqlite
-SQLite
 superglobals
+templating
+tmp
