@@ -1,0 +1,143 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>PHP as a Second Language</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="https://bdsl.matomo.cloud/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/bdsl.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>PHP as a Second Language</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                            <li><a href="11-databases.html">11-databases</a></li>
+                            <li><a href="12-templating.html">12-templating</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Templating</h1>
+<p>Our planet viewer works, but it isn't pretty. Let's use some HTML to make it look a little better.</p>
+<p>It has been a common practice to use PHP as a templating language, and even mix PHP and HTML code together in the same
+file. While PHP can still be used as a templating language, it isn't a good one, so we won't do that.</p>
+<p>Instead, we will use PHP to prepare whatever data we want to show, and then pass that to a template written in a
+different language. </p>
+<p>There are dozens of template engines available as libraries to use in PHP programs, and another good option
+is to make a single page application, with all templating done in the browser, and data sent from the server as JSON.</p>
+<h2>Twig</h2>
+<p>For this tutorial we will write a template in the <strong>Twig</strong> language, which works with PHP.</p>
+<p>First install Twig in your project by running:</p>
+<pre><code class="language-shell">composer require "twig/twig:^3.0"</code></pre>
+<p>Now let's make our template. Start by writing a page in HTML. For now we'll hard code everything. Make a
+'<code>templates</code>' directory, and save the following as '<code>templates/planet.html.twig</code>':</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Some Planet&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Some Planet&lt;/h1&gt;
+        &lt;p&gt;Population: 34601&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Edit our <code>viewPlanet.php</code> file to make it use this template:</p>
+<pre><code class="language-php">&lt;?php declare(strict_types=1);
+
+namespace PhpAsASecondLanguage;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use PDO;
+use Twig\Loader\FilesystemLoader;
+
+$planetStore = new PlanetStore(
+    new PDO("sqlite:". __DIR__ . '/database.sqlite')
+);
+
+$templateLoader = new FilesystemLoader(__DIR__ . '/templates/');
+$twig = new \Twig\Environment($templateLoader);
+
+$planet = $planetStore-&gt;getPlanet($_GET['name']);
+
+header('Content-Type: text/html');
+if ($planet === null) {
+    http_response_code(404);
+    echo ('Planet not found');
+    exit();
+}
+
+$template = $twig-&gt;load('planet.html.twig');
+
+echo $template-&gt;render();</code></pre>
+<p>If you run the PHP server again and view your site you should see the content of the template. Of course at this point
+all we're doing is serving static HTML with extra steps.</p>
+<p>Behind the scenes the Twig engine compiles the template to a PHP class. We don't need to read the class, but this is
+useful because it means we can pass PHP objects to it and use their properties and functions. Let's pass our planet
+object to the template. Change the last line of '<code>viewPlanet.php</code>' to:</p>
+<pre><code class="language-php">echo $template-&gt;render(['planet' =&gt; $planet]);</code></pre>
+<p>Finally we need to edit '<code>planet.html.twig'</code>. Since we won't always be reading the template at the same time as the PHP file
+that uses it, and neither will any tools and IDEs we might be using, we should add a comment to make it clear that we
+expect to have a <code>planet</code> variable, and it will be of type <code>Planet</code>. Add the following to the top of the file:</p>
+<pre><code class="language-twig">{#  @var planet PhpAsASecondLanguage\Planet #}</code></pre>
+<p>In Twig we use double curly brackets to output dynamic data: Replace <code>Some Planet</code> with
+<code>{{planet.name}}</code>, and replace <code>34601</code> with <code>{{planet.populationSize}}</code>. Twig knows that we mean <code>getName</code> and
+<code>getPopulationSize</code>, so we don't have to write those function names out in full.</p>
+<p>If you reload the page you should now see the planet details in their proper places.</p>
+<p>Twig is a full featured special purpose programming language, with features like loops, conditionals, filters,
+inheritance, etc, but this is a PHP tutorial, not a Twig tutorial.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Site built Sat, 29 Feb 2020 17:35.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>
