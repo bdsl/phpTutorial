@@ -48,7 +48,7 @@
                             <li><a href="11-databases.html">11-databases</a></li>
                             <li><a href="12-templating.html">12-templating</a></li>
                             <li><a href="13-static-analysis.html">13-static-analysis</a></li>
-                            <li><a href="14-further-reading.html">14-further-reading</a></li>
+                            <li><a href="14-what-next.html">14-what-next</a></li>
                     </ul>
     </div>
     <article>
@@ -89,9 +89,10 @@ settings to make it a lot stricter. Open '<code>psalm.xml</code>' and change <co
 </code></p>
 <p>Psalm has looked at our code, and the code of the libraries and modules we're using, and found a mismatch. The planet
 class constructor needs a string, but we've passed it something from the array returned by the
-<a href="https://www.php.net/manual/en/pdostatement.fetch.php">PDOStatement::fetch</a>. Psalm knows that when we call <code>fetch</code> with
-the <code>\PDO::FETCH_ASSOC</code> we will either get <code>false</code> or an array of scalar values (i.e. not objects). It can see that the
-value isn't false at line 52, because when it is false the function returns early, skipping that line.</p>
+<a href="https://www.php.net/manual/en/pdostatement.fetch.php">PDOStatement::fetch</a>.</p>
+<p>Psalm knows that when we call <code>fetch</code> with <code>\PDO::FETCH_ASSOC</code> we will either get <code>false</code> or an array of scalar
+values (i.e. not objects). It can see that the value isn't false at line 52, because when it is false the function
+returns early, skipping that line.</p>
 <p>In this case we know our database a bit better than Psalm does, and we need to add a comment to tell Psalm that fetch
 will return either false or an array of strings. Edit '<code>PlanetStore.php</code>' and add docblock for the <code>$row</code> variable:</p>
 <pre><code class="language-php">        /** @var array&lt;string, string&gt;|false $row */
@@ -133,7 +134,7 @@ back to make Psalm happy again.</p>
         </em>
     </p>
 
-    <p><em>Site built Sat, 29 Feb 2020 22:28.</em></p>
+    <p><em>Site built Sat, 29 Feb 2020 23:47.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>
