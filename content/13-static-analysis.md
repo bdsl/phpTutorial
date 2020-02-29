@@ -60,9 +60,11 @@ Re-run Psalm. Now you should see an error:
 
 Psalm has looked at our code, and the code of the libraries and modules we're using, and found a mismatch. The planet
 class constructor needs a string, but we've passed it something from the array returned by the 
-[PDOStatement::fetch](https://www.php.net/manual/en/pdostatement.fetch.php). Psalm knows that when we call `fetch` with
-the `\PDO::FETCH_ASSOC` we will either get `false` or an array of scalar values (i.e. not objects). It can see that the
-value isn't false at line 52, because when it is false the function returns early, skipping that line.
+[PDOStatement::fetch](https://www.php.net/manual/en/pdostatement.fetch.php).
+
+Psalm knows that when we call `fetch` with `\PDO::FETCH_ASSOC` we will either get `false` or an array of scalar
+values (i.e. not objects). It can see that the value isn't false at line 52, because when it is false the function
+returns early, skipping that line.
 
 In this case we know our database a bit better than Psalm does, and we need to add a comment to tell Psalm that fetch
 will return either false or an array of strings. Edit '`PlanetStore.php`' and add docblock for the `$row` variable:
