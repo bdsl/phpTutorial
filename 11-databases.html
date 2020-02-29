@@ -51,14 +51,14 @@
     <article>
         <h1>Databases</h1>
 <p>PHP applications often connect to databases. This is even harder to avoid in PHP than it would be in other languages
-you can run on a web server like JS, Java, or C#, because PHP has a <em>share-nothing</em> architecture. That means that the
+you can run on a web server like JS, Java, or C#, because PHP has a <em>shared-nothing</em> architecture. That means that the
 code dealing with each request runs in isolation, and does not share any objects or variables with other requests. At
-the end of the request-response cycle all stack frames are unwound and all objects are garbage. </p>
+the end of the request-response cycle all stack frames are unwound and all objects become garbage. </p>
 <p>So if your program needs to persist anything from one page to the next, a database is a natural choice.</p>
 <p>For simplicity, we will use <a href="https://sqlite.org/index.html">SQLite</a>. This is not a database server that you connect to,
-but a full featured SQL database engine supplied as a C library, and available as an add-on module for PHP. An SQLite
-database is just a file.</p>
-<p>The details of SQL (structured query language), the programming language for defining and querying databases, are beyond
+but a full featured SQL database engine supplied as a C library, and available as an add-on module for PHP, and the
+world's most widely deployed DB engine. An SQLite database is just a file.</p>
+<p>The details of SQL, the programming language for defining and querying databases, are beyond
 the scope of this tutorial. We will see some SQL code, but as far as PHP is concerned they are just strings to send to
 the database engine.</p>
 <h2>Install the SQLite PHP Module</h2>
@@ -70,10 +70,12 @@ you should see a line like &quot;PDO drivers =&gt; sqlite&quot;. There may be ot
 <h3>Linux</h3>
 <p>If you installed PHP through your package manager, there should be an SQLite module available in the same place. Make
 sure you get the module that matches your PHP version number. For instance, on Debian or Ubuntu search your repository
-with  <code>apt-cache search php | grep sqlite</code>. Once you've found the package name, e.g. <code>php7.4-sqlite3</code> install it with
-a command such as <code>sudo apt install php7.4-sqlite3</code>.</p>
+with: </p>
+<p><code>apt-cache search php | grep sqlite</code></p>
+<p>Once you've found the package name, e.g. <code>php7.4-sqlite3</code> install it with a command such as </p>
+<p><code>sudo apt install php7.4-sqlite3</code>.</p>
 <h3>Mac</h3>
-<p>If you installed PHP via homebrew, I think should automatically have come with SQLite built in and enabled.</p>
+<p>If you installed PHP via homebrew, I think will automatically have come with SQLite built in and enabled.</p>
 <h3>Windows</h3>
 <p>If you installed PHP as part of <em>XAMPP</em> this should have SQLite enabled by default.</p>
 <h2>Creating a database</h2>
@@ -81,13 +83,14 @@ a command such as <code>sudo apt install php7.4-sqlite3</code>.</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
 namespace PhpAsASecondLanguage;
+
 use PDO;
 
 $filename =__DIR__ . "/database.sqlite";
 
 file_put_contents($filename, '');
 
-$connection = new PDO("sqlite:".$filename);
+$connection = new PDO("sqlite:" . $filename);
 
 $connection-&gt;query('
     CREATE TABLE planets (
@@ -98,12 +101,13 @@ $connection-&gt;query('
 '
 );</code></pre>
 <p>Run the script with <code>php create-database.php</code>. It should create a new binary file <code>database.sqlite</code>.</p>
-<p><code>file_put_contents</code> writes a string to a file, creating the file if it already exist. We're using here simply to create
+<p><code>file_put_contents</code> writes a string to a file, overwriting the file if it already exists. We're using here to create
 a completely empty file.</p>
-<p>The <code>PDO</code> class is supplied by the PDO extension. A PDO object represents a connection to a database, and allows us to
-send it queries and get back results. When we call the <a href="https://www.php.net/manual/en/pdo.construct.php">PDO constructor</a>
-we pass it a string holding details of the database we want to connect to, known as a <strong>DSN</strong>. For SQLITE the DSN
-consists of <code>sqlite:</code> followed by the absolute file path of our database.</p>
+<p>The <code>PDO</code> class is supplied by the <a href="https://www.php.net/manual/en/intro.pdo.php">PDO extension</a>. A PDO object represents
+a connection to a database, and allows us to send it queries and get back results. When we call the
+<a href="https://www.php.net/manual/en/pdo.construct.php">PDO constructor</a> we pass it a string holding details of the database
+we want to connect to, known as a Data Source Name or <em>DSN</em>. For SQLite the DSN consists of '<code>sqlite:</code>' followed by an
+absolute file path.</p>
 <h2>Querying the database</h2>
 <p>Let's write a very small program to put the planets in the database, and let us view info about any planet. First we
 will need a class that can insert all the planets. Make a file <code>src/PlanetStore.php</code></p>
@@ -144,7 +148,8 @@ final class PlanetStore
         ];
     } 
 }</code></pre>
-<p>And write a script to invoke this class: <code>storePlanets.php</code>:</p>
+<p>Once again if you don't have PHP 7.4 you will need to remove the <code>PDO</code> property type on the <code>$connection</code> property.</p>
+<p>Now write a script <code>storePlanets.php</code> to use this class:</p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
 namespace PhpAsASecondLanguage;
@@ -158,13 +163,12 @@ $planetStore = new PlanetStore(
 );
 
 $planetStore-&gt;storePlanets();</code></pre>
-<p>Run <code>php storePlanets.php</code>. This should add the eight planets to the database. If it works it won't produce any visible
-output.</p>
+<p>Run <code>php storePlanets.php</code>. This should add the eight planets to the database. It shouldn't produce any visible output.</p>
 <p>The most important thing to notice about our code so far is that we didn't concatenate any strings to create queries to
 send to the database. Instead we prepared a query, using question marks as placeholders for our data, and then supplied
-the values of those parameters separately each time we executed the query. This practice makes our database use much
-less error prone and more secure. The database engine knows what exactly what's code that it should interpret and what's
-data that it should simply store.</p>
+the values of those parameters separately each time we executed the query.</p>
+<p>This practice makes our database use much less error prone and more secure. The database engine knows what exactly
+what's code that it should interpret and what's data that it should simply store.</p>
 <p>Now let's write the code to show a planet. First let's add a function to the PlanetStore class to pull a Planet out of
 the database:</p>
 <pre><code class="language-php">    public function getPlanet(string $planetName): ?Planet
@@ -212,9 +216,9 @@ if ($planet === null) {
 
 echo "**********   {$planet-&gt;getName()}   **********\n\n";
 echo "Population: {$planet-&gt;getPopulationSize()}\n";</code></pre>
-<p>Notice the <code>$_GET</code> array - PHP automatically fills this so-called <em>superglobals</em> array with any query parameters sent by
+<p>Notice the <code>$_GET</code> array - PHP automatically fills this so-called <strong>superglobal</strong> array with any query parameters sent by
 the browser. It is available to us anywhere in our program, but it's best to limit where we use it - code that directly
-pulls data from superglobals can be hard to test and re-use.</p>
+pulls data from superglobals can be very hard to test and re-use and understand.</p>
 <p>Run the PHP server:</p>
 <pre><code class="language-shell">php -S localhost:8080</code></pre>
 <p>Open <a href="http://localhost:8080/viewPlanet.php?name=Earth">http://localhost:8080/viewPlanet.php?name=Earth</a> in your browser.</p>
@@ -237,7 +241,7 @@ details of connection strings and SQL code will vary from DB to DB.</p>
         </em>
     </p>
 
-    <p><em>Site built Sat, 29 Feb 2020 15:37.</em></p>
+    <p><em>Site built Sat, 29 Feb 2020 15:55.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>
