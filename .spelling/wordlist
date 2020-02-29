@@ -1,4 +1,6 @@
 personal_ws-1.1 en 0 utf-8
+AModeratelyShortPhpTutorial
+Analyzing
 BDD
 Banas
 Behat
@@ -8,7 +10,6 @@ CentOs
 CircleCI
 DSN
 DocBlock
-DocBlocks
 Drupal
 EOL
 Homebrew
@@ -32,8 +33,8 @@ PHPDoc
 PHPUnit
 PSL
 PSR
-AModeratelyShortPhpTutorial
 PhpStorm
+PossiblyInvalidArrayAccess
 Remi's
 SQLite
 SQLite
@@ -45,9 +46,11 @@ Xampp
 Zend
 autoload
 autoloader
+br
 ci
 circleci
 cli
+color
 config
 const
 ctrl
@@ -64,6 +67,7 @@ getters
 goto
 html
 http
+init
 instanceof
 insteadof
 isset
@@ -72,6 +76,7 @@ json
 localhost
 md
 natsort
+nbsp
 perl
 phar
 php
@@ -86,3 +91,5 @@ sudo
 superglobals
 templating
 tmp
+vimeo
+xml

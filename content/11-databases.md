@@ -201,7 +201,7 @@ $planetStore = new PlanetStore(
     new PDO("sqlite:". __DIR__ . '/database.sqlite')
 );
 
-$planet = $planetStore->getPlanet($_GET['name']);
+$planet = $planetStore->getPlanet((string)$_GET['name']);
 
 header('Content-Type: text/plain');
 if ($planet === null) {

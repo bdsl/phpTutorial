@@ -43,6 +43,7 @@ final class PlanetStore
         $statement->bindValue(':name', $planetName);
         $statement->execute();
 
+        /** @var array<string, string>|false $row */
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (! $row) {

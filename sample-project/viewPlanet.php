@@ -3,8 +3,6 @@
 namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/PlanetStore.php';
-require_once __DIR__ . '/Planet.php';
 
 use PDO;
 
@@ -13,7 +11,7 @@ $planetStore = new PlanetStore(
 );
 
 
-$planet = $planetStore->getPlanet($_GET['name']);
+$planet = $planetStore->getPlanet((string)$_GET['name']);
 
 header('Content-Type: text/plain');
 if ($planet === null) {

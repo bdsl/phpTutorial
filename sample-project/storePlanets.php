@@ -3,8 +3,6 @@
 namespace AModeratelyShortPhpTutorial;
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/PlanetStore.php';
-require_once __DIR__ . '/Planet.php';
 
 use PDO;
 

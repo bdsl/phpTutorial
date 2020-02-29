@@ -56,7 +56,7 @@ $planetStore = new PlanetStore(
 $templateLoader = new FilesystemLoader(__DIR__ . '/templates/');
 $twig = new \Twig\Environment($templateLoader);
 
-$planet = $planetStore->getPlanet($_GET['name']);
+$planet = $planetStore->getPlanet((string)$_GET['name']);
 
 header('Content-Type: text/html');
 if ($planet === null) {
