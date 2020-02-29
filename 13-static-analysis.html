@@ -1,0 +1,142 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>A Moderately Short PHP Tutorial</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="https://bdsl.matomo.cloud/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/bdsl.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+</head>
+
+<body>
+<div>
+    <div id="draft">DRAFT</div>
+    <h1>A Moderately Short PHP Tutorial</h1>
+    <div id="pages">
+        <ul>
+                            <li><a href="01-introduction.html">01-introduction</a></li>
+                            <li><a href="02-getting-php.html">02-getting-php</a></li>
+                            <li><a href="03-hello-world.html">03-hello-world</a></li>
+                            <li><a href="04-http.html">04-http</a></li>
+                            <li><a href="05-variables.html">05-variables</a></li>
+                            <li><a href="06-functions.html">06-functions</a></li>
+                            <li><a href="07-classes-1.html">07-classes-1</a></li>
+                            <li><a href="08-classes-2.html">08-classes-2</a></li>
+                            <li><a href="09-classes-3.html">09-classes-3</a></li>
+                            <li><a href="10-testing.html">10-testing</a></li>
+                            <li><a href="11-databases.html">11-databases</a></li>
+                            <li><a href="12-templating.html">12-templating</a></li>
+                            <li><a href="13-static-analysis.html">13-static-analysis</a></li>
+                            <li><a href="14-further-reading.html">14-further-reading</a></li>
+                    </ul>
+    </div>
+    <article>
+        <h1>Static Analysis</h1>
+<p>I recommend using at least one static analysis tool on any PHP project. While languages like TypeScript and Java have
+explicit compilation phases that can quickly catch lots of errors, PHP doesn't. Most of the type checks in PHP happen only
+as each line of code is executed.</p>
+<p>Unit tests help, but 100% test coverage is unlikely, and even then we can only ever test with a few example inputs. For
+more confidence we need static analysis as well, especially if we want to be able to easily refactor our code and upgrade
+the libraries we're using. </p>
+<p>Static Analysers for PHP include <a href="https://psalm.dev/">Psalm</a>, <a href="https://github.com/phpstan/phpstan">PHPStan</a> and
+<a href="https://github.com/phan/phan">Phan</a>. In this tutorial we will use Psalm.</p>
+<h2>Running Psalm</h2>
+<p>Install Psalm with Composer:</p>
+<pre><code class="language-shell">composer require --dev vimeo/psalm</code></pre>
+<p>Create a Psalm Config file:</p>
+<pre><code class="language-shell">./vendor/bin/psalm --init</code></pre>
+<p>Finally, run Psalm to check your code:</p>
+<pre><code class="language-shell">./vendor/bin/psalm</code></pre>
+<p>You should see something like:</p>
+<pre><code class="language-text">Calculating best config level based on project files
+Calculating best config level based on project files
+Scanning files...
+Analyzing files...
+
+░E
+
+Detected level 7 as a suitable initial default
+Config file created successfully. Please re-run psalm.</code></pre>
+<p>Re-run Psalm as instructed. If your code is the same as mine, you should see &quot;No errors found!&quot;, and
+&quot;1 other issues found. You can display them with --show-info=true&quot;.</p>
+<p>That's OK, but where's the fun in a static analysis tool that doesn't complain about anything? Let's change the Psalm
+settings to make it a lot stricter. Open '<code>psalm.xml</code>' and change <code>errorLevel="7"</code> to <code>errorLevel="1"</code>.</p>
+<p>Re-run Psalm. Now you should see an error:</p>
+<p><code>
+<span style="color: red;">ERROR</span>: InvalidArgument - src/PlanetStore.php:52:27 - Argument 1 of AModeratelyShortPhpTutorial\Planet::__construct expects string, scalar provided<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Planet(<span style="color: white; background: red;">$row['name']</span>, (float)$row['population_size']);
+</code></p>
+<p>Psalm has looked at our code, and the code of the libraries and modules we're using, and found a mismatch. The planet
+class constructor needs a string, but we've passed it something from the array returned by the
+<a href="https://www.php.net/manual/en/pdostatement.fetch.php">PDOStatement::fetch</a>. Psalm knows that when we call <code>fetch</code> with
+the <code>\PDO::FETCH_ASSOC</code> we will either get <code>false</code> or an array of scalar values (i.e. not objects). It can see that the
+value isn't false at line 52, because when it is false the function returns early, skipping that line.</p>
+<p>In this case we know our database a bit better than Psalm does, and we need to add a comment to tell Psalm that fetch
+will return either false or an array of strings. Edit '<code>PlanetStore.php</code>' and add docblock for the <code>$row</code> variable:</p>
+<pre><code class="language-php">        /** @var array&lt;string, string&gt;|false $row */
+        $row = $statement-&gt;fetch(PDO::FETCH_ASSOC);</code></pre>
+<p>This docbloc means that the <code>$row</code> variable's type is the union of false and string-indexed, string-valued array. In
+other words it either holds the value <code>false</code>, or it holds an array, in which any keys are strings and any values are
+also strings. <code>|</code> combines types to make a <strong>union type</strong>. The <code>&lt; &gt;</code> brackets are used to provide arguments for a
+<strong>generic type</strong>. <code>false</code> is an example of a <strong>literal type</strong>.</p>
+<p>Psalm's type system extends the PHP type system, and is a lot more expressive. PHP itself does not have union, generic,
+or literal types, although unions are coming in PHP 8. We can use types that PHP doesn't support by writing them in
+docblocks, with tags such as
+<a href="https://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.var.pkg.html">@var</a>,
+<a href="https://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.param.pkg.html">@param</a>, and
+<a href="https://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.return.pkg.html">@return</a>,
+and making sure we run our static analysis tool every time
+we edit our source code.</p>
+<p>Let's add a deliberate mistake to our code to see a bit more of what Psalm can help us with. Let's suppose we forgot
+that the database might not have the planet we're looking for. Comment out the check for that in '<code>planetStore.php</code>':</p>
+<pre><code class="language-php">//        if (! $row) {
+//            return null;
+//        }</code></pre>
+<p>Re-run Psalm. It now reports two <strong>PossiblyInvalidArrayAccess</strong> errors, telling us that we
+'<code>Cannot access array value on non-array variable $row of type false</code>'. This is a reminder that we should have made sure
+that <code>$row</code> is not false before trying to use it as an array. If we leave it like this our server will produce an HTTP
+500 internal server error instead of displaying the 404 page when someone asks to see the planet Pluto. Put the check
+back to make Psalm happy again.</p>
+    </article>
+
+    <div id="byline">
+        Copyright Barney Laurance 2020
+    </div>
+
+    <div id="footer">
+    <p>
+        <em>
+        This is a very early draft website. It is here only to be created and critiqued.
+            Use of the site for learning PHP is not yet recommended. The source repository for this site is at
+            <a href="https://github.com/bdsl/phpTutorial">https://github.com/bdsl/phpTutorial</a>
+        </em>
+    </p>
+
+    <p><em>Site built Sat, 29 Feb 2020 22:28.</em></p>
+
+    </div>
+    <script src="js/scripts.js"></script>
+</div>
+</body>
+</html>

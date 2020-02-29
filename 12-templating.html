@@ -47,6 +47,7 @@
                             <li><a href="10-testing.html">10-testing</a></li>
                             <li><a href="11-databases.html">11-databases</a></li>
                             <li><a href="12-templating.html">12-templating</a></li>
+                            <li><a href="13-static-analysis.html">13-static-analysis</a></li>
                             <li><a href="14-further-reading.html">14-further-reading</a></li>
                     </ul>
     </div>
@@ -92,7 +93,7 @@ $planetStore = new PlanetStore(
 $templateLoader = new FilesystemLoader(__DIR__ . '/templates/');
 $twig = new \Twig\Environment($templateLoader);
 
-$planet = $planetStore-&gt;getPlanet($_GET['name']);
+$planet = $planetStore-&gt;getPlanet((string)$_GET['name']);
 
 header('Content-Type: text/html');
 if ($planet === null) {
@@ -135,7 +136,7 @@ inheritance, etc, but this is a PHP tutorial, not a Twig tutorial.</p>
         </em>
     </p>
 
-    <p><em>Site built Sat, 29 Feb 2020 20:43.</em></p>
+    <p><em>Site built Sat, 29 Feb 2020 22:28.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>
