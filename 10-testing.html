@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
-    <title>PHP as a Second Language</title>
+    <title>A Moderately Short PHP Tutorial</title>
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <link rel="stylesheet"
@@ -32,7 +32,7 @@
 <body>
 <div>
     <div id="draft">DRAFT</div>
-    <h1>PHP as a Second Language</h1>
+    <h1>A Moderately Short PHP Tutorial</h1>
     <div id="pages">
         <ul>
                             <li><a href="01-introduction.html">01-introduction</a></li>
@@ -47,7 +47,6 @@
                             <li><a href="10-testing.html">10-testing</a></li>
                             <li><a href="11-databases.html">11-databases</a></li>
                             <li><a href="12-templating.html">12-templating</a></li>
-                            <li><a href="13-static-analysis.html">13-static-analysis</a></li>
                             <li><a href="14-further-reading.html">14-further-reading</a></li>
                     </ul>
     </div>
@@ -69,7 +68,7 @@ in production. If we wanted to prepare a copy of our program to install on a ser
 <pre><code class="language-json">{
     "autoload": {
         "psr-4": {
-            "PhpAsASecondLanguage\\": "src/"
+            "AModeratelyShortPhpTutorial\\": "src/"
         }
     },
     "require-dev": {
@@ -87,7 +86,7 @@ will output the list of installed packages in a much more consice format.</p>
 <p>Let's write our first test. Create a <code>test</code> subdirectory next to <code>src</code>, and write the following in <code>test/PlanetTest.php</code></p>
 <pre><code class="language-php">&lt;?php declare(strict_types=1);
 
-namespace PhpAsASecondLanguage;
+namespace AModeratelyShortPhpTutorial;
 
 use PHPUnit\Framework\TestCase;
 
@@ -133,7 +132,7 @@ Time: 36 ms, Memory: 4.00 MB
 
 There was 1 failure:
 
-1) PhpAsASecondLanguage\PlanetTest::test_it_can_accept_immigrant
+1) AModeratelyShortPhpTutorial\PlanetTest::test_it_can_accept_immigrant
 Failed asserting that 0.0 is identical to 1.0.
 
 /tmp/composerPlayground/test/PlanetTest.php:20
@@ -173,7 +172,7 @@ and be readable by people who haven't been trained in programming.</p>
         </em>
     </p>
 
-    <p><em>Site built Sat, 29 Feb 2020 18:38.</em></p>
+    <p><em>Site built Sat, 29 Feb 2020 20:43.</em></p>
 
     </div>
     <script src="js/scripts.js"></script>
