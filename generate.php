@@ -35,6 +35,8 @@ foreach ($files as $file)
     );
 }
 
+$fileystem->write('generated/CNAME', "a-moderately-short-php-tutorial.com\n");
+
 $fileystem->copy('generated/01-introduction.html', 'generated/index.html');
 
 $fileystem->copy('css/styles.css', 'generated/css/styles.css');
