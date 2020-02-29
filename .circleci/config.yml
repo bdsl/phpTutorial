@@ -32,6 +32,12 @@ jobs:
 
       - run: ./test.sh
       - run: ./vendor/bin/psalm.phar
+      - run:
+          name: Check Sample project
+          command: |
+            cd sample-project
+            composer install
+            ../vendor/bin/psalm.phar
       - run: php generate.php
 
       - store_artifacts:
