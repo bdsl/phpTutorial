@@ -1,17 +1,17 @@
 # Databases
 
 PHP applications often connect to databases. This is even harder to avoid in PHP than it would be in other languages
-you can run on a web server like JS, Java, or C#, because PHP has a *share-nothing* architecture. That means that the
+you can run on a web server like JS, Java, or C#, because PHP has a *shared-nothing* architecture. That means that the
 code dealing with each request runs in isolation, and does not share any objects or variables with other requests. At
-the end of the request-response cycle all stack frames are unwound and all objects are garbage. 
+the end of the request-response cycle all stack frames are unwound and all objects become garbage. 
 
 So if your program needs to persist anything from one page to the next, a database is a natural choice.
 
 For simplicity, we will use [SQLite](https://sqlite.org/index.html). This is not a database server that you connect to, 
-but a full featured SQL database engine supplied as a C library, and available as an add-on module for PHP. An SQLite
-database is just a file.
+but a full featured SQL database engine supplied as a C library, and available as an add-on module for PHP, and the
+world's most widely deployed DB engine. An SQLite database is just a file.
 
-The details of SQL (structured query language), the programming language for defining and querying databases, are beyond
+The details of SQL, the programming language for defining and querying databases, are beyond
 the scope of this tutorial. We will see some SQL code, but as far as PHP is concerned they are just strings to send to 
 the database engine.
 
@@ -29,12 +29,17 @@ If you don't have the PDO SQLite module, how to install it will depend on your O
 
 If you installed PHP through your package manager, there should be an SQLite module available in the same place. Make
 sure you get the module that matches your PHP version number. For instance, on Debian or Ubuntu search your repository
-with  `apt-cache search php | grep sqlite`. Once you've found the package name, e.g. `php7.4-sqlite3` install it with
-a command such as `sudo apt install php7.4-sqlite3`.
+with: 
+
+`apt-cache search php | grep sqlite`
+
+Once you've found the package name, e.g. `php7.4-sqlite3` install it with a command such as 
+
+`sudo apt install php7.4-sqlite3`.
 
 ### Mac
 
-If you installed PHP via homebrew, I think should automatically have come with SQLite built in and enabled.
+If you installed PHP via homebrew, I think will automatically have come with SQLite built in and enabled.
 
 ### Windows
 
@@ -47,13 +52,14 @@ First, let's write a PHP script `src/create-database.php` to create a new databa
 <?php declare(strict_types=1);
 
 namespace PhpAsASecondLanguage;
+
 use PDO;
 
 $filename =__DIR__ . "/database.sqlite";
 
 file_put_contents($filename, '');
 
-$connection = new PDO("sqlite:".$filename);
+$connection = new PDO("sqlite:" . $filename);
 
 $connection->query('
     CREATE TABLE planets (
@@ -67,13 +73,14 @@ $connection->query('
 
 Run the script with `php create-database.php`. It should create a new binary file `database.sqlite`.
 
-`file_put_contents` writes a string to a file, creating the file if it already exist. We're using here simply to create
+`file_put_contents` writes a string to a file, overwriting the file if it already exists. We're using here to create
 a completely empty file.
 
-The `PDO` class is supplied by the PDO extension. A PDO object represents a connection to a database, and allows us to
-send it queries and get back results. When we call the [PDO constructor](https://www.php.net/manual/en/pdo.construct.php)
-we pass it a string holding details of the database we want to connect to, known as a **DSN**. For SQLITE the DSN 
-consists of `sqlite:` followed by the absolute file path of our database.
+The `PDO` class is supplied by the [PDO extension](https://www.php.net/manual/en/intro.pdo.php). A PDO object represents
+a connection to a database, and allows us to send it queries and get back results. When we call the
+[PDO constructor](https://www.php.net/manual/en/pdo.construct.php) we pass it a string holding details of the database
+we want to connect to, known as a Data Source Name or *DSN*. For SQLite the DSN consists of '`sqlite:`' followed by an
+absolute file path.
 
 ## Querying the database
 
@@ -120,7 +127,9 @@ final class PlanetStore
 }
 ```
 
-And write a script to invoke this class: `storePlanets.php`:
+Once again if you don't have PHP 7.4 you will need to remove the `PDO` property type on the `$connection` property.
+
+Now write a script `storePlanets.php` to use this class:
 
 ```php
 <?php declare(strict_types=1);
@@ -138,14 +147,14 @@ $planetStore = new PlanetStore(
 $planetStore->storePlanets();
 ```
 
-Run `php storePlanets.php`. This should add the eight planets to the database. If it works it won't produce any visible
-output.
+Run `php storePlanets.php`. This should add the eight planets to the database. It shouldn't produce any visible output.
 
 The most important thing to notice about our code so far is that we didn't concatenate any strings to create queries to
 send to the database. Instead we prepared a query, using question marks as placeholders for our data, and then supplied
-the values of those parameters separately each time we executed the query. This practice makes our database use much
-less error prone and more secure. The database engine knows what exactly what's code that it should interpret and what's
-data that it should simply store.
+the values of those parameters separately each time we executed the query.
+
+This practice makes our database use much less error prone and more secure. The database engine knows what exactly
+what's code that it should interpret and what's data that it should simply store.
 
 Now let's write the code to show a planet. First let's add a function to the PlanetStore class to pull a Planet out of
 the database:
@@ -205,9 +214,9 @@ echo "**********   {$planet->getName()}   **********\n\n";
 echo "Population: {$planet->getPopulationSize()}\n";
 ```
 
-Notice the `$_GET` array - PHP automatically fills this so-called *superglobals* array with any query parameters sent by
+Notice the `$_GET` array - PHP automatically fills this so-called **superglobal** array with any query parameters sent by
 the browser. It is available to us anywhere in our program, but it's best to limit where we use it - code that directly
-pulls data from superglobals can be hard to test and re-use.
+pulls data from superglobals can be very hard to test and re-use and understand.
 
 Run the PHP server:
 ```shell script
