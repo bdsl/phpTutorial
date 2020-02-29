@@ -79,3 +79,8 @@ setUp
 src
 sudo
 tmp
+DSN
+http
+sqlite
+SQLite
+superglobals
