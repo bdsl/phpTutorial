@@ -1,10 +1,12 @@
 #pages ul {
     display:flex;
+    flex-wrap: wrap;
     list-style:none;
 }
 
 #pages ul li {
-    margin: 1em;
+    margin: 0.2em 1em;
+    min-width: 10em;
 }
 
 body > div {
