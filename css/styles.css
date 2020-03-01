@@ -40,6 +40,18 @@ body > div {
     text-align: right;
 }
 
+#previous {
+    width: 50%;
+    float: left;
+    text-align: left;
+}
+
+#next {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
 #footer {
     margin-top: 1em;
     padding: 1em;

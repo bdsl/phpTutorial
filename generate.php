@@ -36,7 +36,7 @@ foreach ($files as $file)
     $processedFiles[] = $processedFile;
 }
 
-foreach ($processedFiles as $file)
+foreach ($processedFiles as $index => $file)
 {
     $fileystem->write(
         'generated/' . str_replace('.md', '.html', $file['basename']),
@@ -45,7 +45,9 @@ foreach ($processedFiles as $file)
                 'pages' => $processedFiles,
                 'body' => $file['htmlContent'],
                 'pageNumber' => $file['pageNumber'],
-                'title' => $file['title']
+                'title' => $file['title'],
+                'previousPage' => $processedFiles[$index-1] ?? null,
+                'nextPage' => $processedFiles[$index+1] ?? null,
             ])
     );
 }

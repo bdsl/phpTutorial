@@ -49,12 +49,35 @@
         {{ body | raw }}
     </article>
 
-    <div id="byline">
-        <em>
-            Copyright Barney Laurance <br>
-            Site generated from sources at {{ "now"|date("H:i", "Europe/London") }} London time on
-            {{ "now"|date("D d M Y", "Europe/London")}}.
-        </em>
+
+
+    <div id="previous">
+        {% if previousPage %}
+            <a href="{{ previousPage.filename }}.html">← {{ previousPage.title }} ←</a>
+        {%  else %}
+            &nbsp;
+        {% endif %}
+    </div>
+
+
+
+    <div id="next">
+        {% if nextPage %}
+            <a href="{{ nextPage.filename }}.html">→ {{ nextPage.title }} →</a>
+        {% endif %}
+    </div>
+
+
+    <div style="clear: both"/>
+
+    <div id="footer">
+        <div id="byline">
+            <em>
+                Copyright Barney Laurance <br>
+                Site generated from sources at {{ "now"|date("H:i", "Europe/London") }} London time on
+                {{ "now"|date("D d M Y", "Europe/London")}}.
+            </em>
+        </div>
     </div>
 
     <script src="js/scripts.js"></script>
