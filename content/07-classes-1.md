@@ -1,4 +1,6 @@
-# Classes and Objects
+{% block title%}Classes and Objects{% endblock %}
+
+{% block body%}
 
 PHP supports class-based object oriented programming, heavily influenced by Java and similar languages. This is
 different to the prototype based OO in JavaScript.
@@ -114,3 +116,4 @@ those changes.
 
 If you know JavaScript, you can think of a class with public and private parts as serving a similar purpose to a
 JavaScript module that exports some but not all of its symbols.
+{% endblock %}

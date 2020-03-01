@@ -1,4 +1,6 @@
-# Classes Part 3
+{% block title%}Classes, Static Methods, and Object Identity{% endblock %}
+
+{% block body%}
 
 ## Static methods
 
@@ -123,3 +125,4 @@ If a function accepts an object as a parameter, or returns an object, PHP doesn'
 copies the identifier. This means that code within and without the function can access and potentially change the same
 object. It's an important part of how communication happens between the parts of a PHP program, but it can easily get
 confusing if not managed carefully.
+{% endblock %}

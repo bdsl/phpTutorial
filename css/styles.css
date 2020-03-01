@@ -1,12 +1,34 @@
 #pages ul {
-    display:flex;
-    flex-wrap: wrap;
-    list-style:none;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-flow: column wrap;
+    align-content: stretch;
+    max-height: 13em;
+}
+
+@media (max-width: 1000px) {
+    #pages ul {
+        max-height: none;
+    }
 }
 
 #pages ul li {
     margin: 0.2em 1em;
-    min-width: 10em;
+    min-width: 20em;
+    display: block;
+    flex: 1 1 0;
+    border-bottom: 0.1em rgba(0,0,0,0) solid;
+    padding-bottom: 0.1em;
+}
+
+#pages ul li.current {
+    list-style: disc;
+    border-bottom-color: black;
+}
+
+#pages ul li.current a {
+    color: inherit;
 }
 
 body > div {
@@ -23,4 +45,17 @@ body > div {
     padding: 1em;
     border: 2px solid #b0b0b0;
     background-color: #dcdcdc;
+}
+
+a {
+    text-decoration: inherit;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+h1 a {
+    text-decoration: inherit;
+    color: inherit;
 }

@@ -1,5 +1,6 @@
-# Hello, world.
+{% block title%}Hello, world{% endblock %}
 
+{% block body%}
 At this point we're ready to start writing in PHP. Make a new folder for your PHP code.
 
 If you have a favourite text editor or integrated development environment, such as Vim, Atom, or VS Code you may want to
@@ -30,3 +31,4 @@ if we make a mistake, not plough ahead and give us a wrong result.
 
 `echo` simply outputs strings of text. We could use `print`, which is quicker to say, but we prefer `echo`, which is
 20% shorter to write.
+{% endblock %}

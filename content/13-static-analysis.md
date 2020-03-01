@@ -1,4 +1,7 @@
-# Static Analysis
+{% block title%}Static Analysis{% endblock %}
+
+{% block body%}
+
 
 I recommend using at least one static analysis tool on any PHP project. While languages like TypeScript and Java have
 explicit compilation phases that can quickly catch lots of errors, PHP doesn't. Most of the type checks in PHP happen only
@@ -102,3 +105,4 @@ Re-run Psalm. It now reports two **PossiblyInvalidArrayAccess** errors, telling 
 that `$row` is not false before trying to use it as an array. If we leave it like this our server will produce an HTTP
 500 internal server error instead of displaying the 404 page when someone asks to see the planet Pluto. Put the check
 back to make Psalm happy again.
+{% endblock %}

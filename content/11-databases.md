@@ -1,4 +1,6 @@
-# Databases
+{% block title%}Databases{% endblock %}
+
+{% block body%}
 
 PHP applications often connect to databases. This is even harder to avoid in PHP than it would be in other languages
 you can run on a web server like JS, Java, or C#, because PHP has a *shared-nothing* architecture. That means that the
@@ -231,3 +233,4 @@ PDO has [drivers](https://www.php.net/manual/en/pdo.drivers.php) for eleven othe
 use instead of SQLite. Connecting, sending queries, and receiving rows should work in the same way, but of course the
 details of connection strings and SQL code will vary from DB to DB.
 
+{% endblock %}

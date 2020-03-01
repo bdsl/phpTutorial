@@ -1,4 +1,6 @@
-# Variables, arrays and loops
+{% block title%}Variables, arrays and loops{% endblock %}
+
+{% block body%}
 
 Variables in PHP always have a dollar sign `$` at the start of their names, and you declare a variable by assigning a
 value to it. PHP *interpolates* double-quoted strings with variables. Edit hello.php to use a variable:
@@ -103,3 +105,4 @@ $planetPopulations = [
 
 echo "The population of Earth is {$planetPopulations['Earth']}.\n";
 ```
+{% endblock %}

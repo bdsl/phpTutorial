@@ -1,5 +1,6 @@
-# HTTP
+{% block title%}HTTP{% endblock %}
 
+{% block body%}
 PHP is of course mostly used in web servers, so you might be wondering why we started with a command line script.
 
 In fact you can access the same script through your web browser. PHP comes with a built-in web server for development
@@ -17,3 +18,4 @@ This tutorial treats PHP as a general purpose programming language - we won't fo
 server. In a big web application only a small part of the code may need to deal with getting data in and out through
 HTTP, and usually this will be abstracted away to some extent by a framework like Symfony or Laravel, or a CMS like
 Wordpress or Drupal.
+{% endblock %}

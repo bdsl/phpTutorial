@@ -1,4 +1,6 @@
-# Testing
+{% block title%}Testing{% endblock %}
+
+{% block body%}
 
 If we want to work on even a moderately complex program over time, we need automated testing - manually testing
 everything every time we make a change would quickly become unsustainable.
@@ -144,3 +146,4 @@ Some other major test frameworks for PHP are [PHPSpec](http://www.phpspec.net/en
 uses the language of *executable specifications* rather than tests. A major difference between them is that in PHPSpec,
 as with PHPUnit, you code in PHP. In Behat you code in a separate language called `gherkin`, designed to look like English
 and be readable by people who haven't been trained in programming.
+{% endblock %}

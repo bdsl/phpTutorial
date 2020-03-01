@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>A Moderately Short PHP Tutorial</title>
+    <title>{{ title }} | A Moderately Short PHP Tutorial</title>
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <link rel="stylesheet"
@@ -30,15 +30,22 @@
 
 <body>
 <div>
-    <h1>A Moderately Short PHP Tutorial</h1>
+    <h1><a href="/">
+        A Moderately Short PHP Tutorial
+        </a>
+    </h1>
+
     <div id="pages">
         <ul>
             {% for page in pages %}
-                <li><a href="{{ page.filename }}.html">{{ page.filename }}</a></li>
+                <li {% if page.pageNumber == pageNumber %} class="current"{% endif %} >
+                    <a href="{{ page.filename }}.html">{{ page.pageNumber }}: {{ page.title }}</a>
+                </li>
             {% endfor %}
         </ul>
     </div>
     <article>
+        <h2>{{ title }}</h2>
         {{ body | raw }}
     </article>
 

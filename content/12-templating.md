@@ -1,4 +1,6 @@
-# Templating
+{% block title%}Templating{% endblock %}
+
+{% block body%}
 
 Our planet viewer works, but it isn't pretty. Let's use some HTML to make it look a little better.
 
@@ -97,3 +99,4 @@ If you reload the page you should now see the planet details in their proper pla
 
 Twig is a full featured special purpose programming language, with features like loops, conditionals, filters,
 inheritance, etc, but this is a PHP tutorial, not a Twig tutorial.
+{% endblock %}

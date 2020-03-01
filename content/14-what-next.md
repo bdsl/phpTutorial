@@ -1,4 +1,6 @@
-# What next?
+{% block title%}What next?{% endblock %}
+
+{% block body%}
 
 This has only been a cursory introduction to the PHP language and ecosystem. Here are some ideas for things to try next,
 in no particular order:
@@ -57,3 +59,4 @@ the most important book for anyone making software in an organisation to read.
 organisations need to develop and maintain to perform well with software. You can also read about those capabilities in
 the briefer and slightly more up-to date form of the
 [2019 Accelerate State of DevOps Report](https://cloud.google.com/devops/state-of-devops/).
+{% endblock %}

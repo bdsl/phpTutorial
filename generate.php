@@ -20,18 +20,32 @@ $contentTwig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader(__DIR__ .
 /** @var list<array{path: string, basename: string}> $files */
 $files = $fileystem->listContents('/content');
 
+$processedFiles = [];
+$pagcounter = 0;
 foreach ($files as $file)
 {
-    $markdown = $contentTwig->render($file['basename']);
+    $pagcounter++;
+    $markdown = $contentTwig->load($file['basename'])->renderBlock('body');
 
+    $processedFile = $file;
     /** @var string $htmlContent */
-    $htmlContent = (new Parsedown())->text($markdown);
+    $processedFile['htmlContent'] = (new Parsedown())->text($markdown);
+    $processedFile['title'] = $contentTwig->load($file['basename'])->renderBlock('title');
+    $processedFile['pageNumber'] = $pagcounter;
+
+    $processedFiles[] = $processedFile;
+}
+
+foreach ($processedFiles as $file)
+{
     $fileystem->write(
         'generated/' . str_replace('.md', '.html', $file['basename']),
         $layoutTwig->render('layout.html.twig',
             [
-                'pages' => $files,
-                'body' => $htmlContent,
+                'pages' => $processedFiles,
+                'body' => $file['htmlContent'],
+                'pageNumber' => $file['pageNumber'],
+                'title' => $file['title']
             ])
     );
 }

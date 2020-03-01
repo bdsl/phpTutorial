@@ -1,4 +1,6 @@
-# Getting PHP
+{% block title%}Getting PHP{% endblock %}
+
+{% block body%}
 
 If you just want to run a PHP one-liner, or experiment with a tiny throwaway PHP script, the easiest way is probably
 online at [3v4l](https://3v4l.org/), but to work through this tutorial you should have PHP installed on your computer.
@@ -42,3 +44,4 @@ package bundles PHP along with the Apache web server, MariaDB database server, a
 for Linux and Macintosh.
 
 Run `php -v` again. Hopefully you will now have version **7.2 or later**.
+{% endblock %}

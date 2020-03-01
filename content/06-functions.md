@@ -1,4 +1,6 @@
-# Functions
+{% block title%}Functions{% endblock %}
+
+{% block body%}
 
 PHP comes with [hundreds](https://www.php.net/manual/en/funcref.php) of built in functions, to sort arrays, find the
 length of strings, match regexes, or even [get the timestamp corresponding to midnight on Easter of a given
@@ -41,3 +43,4 @@ Stack trace:
 The first part of the program ran fine, but attempting to pass an integer to a function that we've declared with a
 string parameter was a fatal error and caused a crash. If we'd tried to return anything other than a string from inside
 the function that would also be a fatal error.
+{% endblock %}

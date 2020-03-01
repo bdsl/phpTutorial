@@ -1,4 +1,6 @@
-# Classes Part 2
+{% block title%}Classes and Composer{% endblock %}
+
+{% block body%}
 
 On the last page we wrote **Planet** class, and saved it in a file called **Planet.php**. Now we want to put that class
 to work.
@@ -128,3 +130,4 @@ Of course technically we haven't got rid of the `require_once` statement, but by
 need to add any more require statements, however classes we use in our program.
 
 If you run `php start.php` you should once again learn the population of Neptune.
+{% endblock %}
