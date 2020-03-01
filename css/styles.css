@@ -1,10 +1,12 @@
 #pages ul {
     display:flex;
+    flex-wrap: wrap;
     list-style:none;
 }
 
 #pages ul li {
-    margin: 1em;
+    margin: 0.2em 1em;
+    min-width: 10em;
 }
 
 body > div {
@@ -14,17 +16,6 @@ body > div {
 
 #byline {
     text-align: right;
-}
-
-#draft {
-    position: absolute;
-    top: 1.5em;
-    transform-origin: center;
-    transform: rotate(45deg);
-    font-size: 15em;
-    pointer-events: none;
-    font-weight: bolder;
-    color: rgba(0,0,0,0.07);
 }
 
 #footer {
