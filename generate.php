@@ -29,7 +29,8 @@ foreach ($files as $file)
 
     $processedFile = $file;
     /** @var string $htmlContent */
-    $processedFile['htmlContent'] = (new Parsedown())->text($markdown);
+    $htmlContent = (new Parsedown())->text($markdown);
+    $processedFile['htmlContent'] = $htmlContent;
     $processedFile['title'] = $contentTwig->load($file['basename'])->renderBlock('title');
     $processedFile['pageNumber'] = $pagcounter;
 
