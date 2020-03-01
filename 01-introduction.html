@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>A Moderately Short PHP Tutorial</title>
+    <title>Introduction | A Moderately Short PHP Tutorial</title>
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <link rel="stylesheet"
@@ -30,65 +30,101 @@
 
 <body>
 <div>
-    <h1>A Moderately Short PHP Tutorial</h1>
+    <h1><a href="/">
+        A Moderately Short PHP Tutorial
+        </a>
+    </h1>
+
     <div id="pages">
         <ul>
-                            <li><a href="01-introduction.html">01-introduction</a></li>
-                            <li><a href="02-getting-php.html">02-getting-php</a></li>
-                            <li><a href="03-hello-world.html">03-hello-world</a></li>
-                            <li><a href="04-http.html">04-http</a></li>
-                            <li><a href="05-variables.html">05-variables</a></li>
-                            <li><a href="06-functions.html">06-functions</a></li>
-                            <li><a href="07-classes-1.html">07-classes-1</a></li>
-                            <li><a href="08-classes-2.html">08-classes-2</a></li>
-                            <li><a href="09-classes-3.html">09-classes-3</a></li>
-                            <li><a href="10-testing.html">10-testing</a></li>
-                            <li><a href="11-databases.html">11-databases</a></li>
-                            <li><a href="12-templating.html">12-templating</a></li>
-                            <li><a href="13-static-analysis.html">13-static-analysis</a></li>
-                            <li><a href="14-what-next.html">14-what-next</a></li>
+                            <li  class="current" >
+                    <a href="01-introduction.html">1: Introduction</a>
+                </li>
+                            <li  >
+                    <a href="02-getting-php.html">2: Getting PHP</a>
+                </li>
+                            <li  >
+                    <a href="03-hello-world.html">3: Hello, world</a>
+                </li>
+                            <li  >
+                    <a href="04-http.html">4: HTTP</a>
+                </li>
+                            <li  >
+                    <a href="05-variables.html">5: Variables, arrays and loops</a>
+                </li>
+                            <li  >
+                    <a href="06-functions.html">6: Functions</a>
+                </li>
+                            <li  >
+                    <a href="07-classes-1.html">7: Classes and Objects</a>
+                </li>
+                            <li  >
+                    <a href="08-classes-2.html">8: Classes and Composer</a>
+                </li>
+                            <li  >
+                    <a href="09-classes-3.html">9: Classes, Static Methods, and Object Identity</a>
+                </li>
+                            <li  >
+                    <a href="10-testing.html">10: Testing</a>
+                </li>
+                            <li  >
+                    <a href="11-databases.html">11: Databases</a>
+                </li>
+                            <li  >
+                    <a href="12-templating.html">12: Templating</a>
+                </li>
+                            <li  >
+                    <a href="13-static-analysis.html">13: Static Analysis</a>
+                </li>
+                            <li  >
+                    <a href="14-what-next.html">14: What next?</a>
+                </li>
                     </ul>
     </div>
     <article>
-        <h2>Who is this for?</h2>
-<p>This is for anyone who wants to learn to program in PHP as a second language.</p>
-<p>You should already know at least one programming language with curly braces, if conditions, variables, functions and
+        <h2>Introduction</h2>
+        <h3>Who is this for?</h3>
+<p>This is for anyone who wants to learn to program in PHP.</p>
+<p>You should probably already know at least one programming language with curly braces, if conditions, variables, functions and
 loops. The most likely scenario is that you are a Javascript or Typescript developer, working on a team that uses
 a combination of PHP and JS or TS, and while you might not currently need deep PHP knowledge,
 you want 'T-shaped skills', involving basic PHP knowledge. There will be some comparisons between with Javascript and
 Typescript.</p>
-<h2>Why did I write it?</h2>
-<p>(<em>This part should probably be moved out of the intro, perhaps entirely out of the main tutorial content.</em>)</p>
+<h3>Why did I write it?</h3>
 <p>I work as a PHP developer, and have some colleagues with great Javascript skills who sometimes want to do work in the PHP
 side of our application, but don't have PHP experience from their previous jobs. I looked around for an introductory
-tutorial to recommend they can work through, but I didn't find anything satisfying.</p>
-<p><a href="https://www.php.net/manual/en/tutorial.php">The tutorial at php.net</a> appears not to have been updated for several years,
-and doesn't even introduce the <code>function</code> or <code>class</code> keywords. On the other hand it does show PHP mixed with HTML,
-which I plan to pretend doesn't exist. I think it's now probably worse than useless.</p>
-<p>David Brumbaugh's
-<a href="https://www.codementor.io/@davidbrumbaugh/migrating-from-javascript-to-php-du1088tr4">Learn a New Language: Migrating from JavaScript to PHP</a>
-is much closer to what I want to write, but it's a bit too short. It doesn't explain how to install PHP, or what Composer is,
-and again it prominently covers mixing PHP with HTML. It shows both the pre-and post 5.4 array syntax, whereas I want to
-require the reader to install at least PHP 7.2, and spend little if any time on older versions.</p>
-<p><a href="https://phptherightway.com/">PHP The Right Way</a> is often recommended to PHP beginners, for good reasons. It has very good
-advice, but it's not really a tutorial to work through step by step. I think it could be overwhelming as an introduction
-to PHP, and covers a lot more than I think most new PHP developers would want to know, including several paragraphs about
-the MySQL Extension, which as it says &quot;is incredibly old and has been superseded by two other extensions&quot;. I plan to
-concentrate on the parts of PHP that I can recommend.</p>
-<p>For PHP devs learning some Javascript, typescript, and/or React there seem to be great materials available online,
-such as the <a href="https://reactjs.org/tutorial/tutorial.html">React Tutorial</a>,
-<a href="https://htmldog.com/guides/javascript/">HTML Dog's Javascript Tutorials</a>,
-<a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">TypeScript in 5 minutes</a> and the (paid) Typescript course at
-<a href="https://www.executeprogram.com/">Execute Program</a>. As far as I can tell there's nothing similar available free to help
-JS devs learn some PHP.</p>
+tutorial to recommend they can work through, but I didn't find anything that seemed exactly right.</p>
+<h3>Approach</h3>
+<p>This is a step-by-step guide to using a selection of the most important aspects of PHP. It doesn't attempt to be
+comprehensive.</p>
+<p>PHP is an old language that has evolved organically over the years. There are many ways to do things,
+and many parts of the language that are best avoided in new code. This tutorial will concentrate on recommended
+ways to use PHP, and ignore most of the things that PHP allows you to do but you probably shouldn't.</p>
     </article>
 
-    <div id="byline">
-        <em>
-            Copyright Barney Laurance <br>
-            Site generated from sources at 00:11 London time on
-            Sun 01 Mar 2020.
-        </em>
+
+
+    <div id="previous">
+                    &nbsp;
+            </div>
+
+
+
+    <div id="next">
+                    <a href="02-getting-php.html">→ Getting PHP →</a>
+            </div>
+
+
+    <div style="clear: both"/>
+
+    <div id="footer">
+        <div id="byline">
+            <em>
+                Copyright Barney Laurance <br>
+                Site generated from sources at 02:02 London time on
+                Sun 01 Mar 2020.
+            </em>
+        </div>
     </div>
 
     <script src="js/scripts.js"></script>
