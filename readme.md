@@ -7,6 +7,6 @@ recommending already free online in this sort of format.
 
 Some more notes on how this is should be different to what's already out there are in [diferentiation.md](./diferentiation.md).
 
-Read the draft website at https://bdsl.github.io/phpTutorial/
+Read the website at https://a-moderately-short-php-tutorial.com/
 
 CircleCI is configured to to rebuild the website based on any changes in the repository.
