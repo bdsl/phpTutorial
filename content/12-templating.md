@@ -13,7 +13,7 @@ different language.
 There are dozens of template engines available as libraries to use in PHP programs, and another good option
 is to make a single page application, with all templating done in the browser, and data sent from the server as JSON.
 
-## Twig
+### Twig
 
 For this tutorial we will write a template in the **Twig** language, which works with PHP.
 

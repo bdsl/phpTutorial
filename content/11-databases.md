@@ -17,7 +17,7 @@ The details of SQL, the programming language for defining and querying databases
 the scope of this tutorial. We will see some SQL code, but as far as PHP is concerned they are just strings to send to 
 the database engine.
 
-## Install the SQLite PHP Module
+### Install the SQLite PHP Module
 
 We will use our SQLite database via PHP's PHP Data Objects (PDO) extension, which provides a consistent interface for
 accessing many different DB types.
@@ -47,7 +47,7 @@ If you installed PHP via homebrew, I think will automatically have come with SQL
 
 If you installed PHP as part of *XAMPP* this should have SQLite enabled by default.
 
-## Creating a database
+### Creating a database
 
 First, let's write a PHP script `src/create-database.php` to create a new database with one table:
 ```php
@@ -84,7 +84,7 @@ a connection to a database, and allows us to send it queries and get back result
 we want to connect to, known as a Data Source Name or *DSN*. For SQLite the DSN consists of '`sqlite:`' followed by an
 absolute file path.
 
-## Querying the database
+### Querying the database
 
 Let's write a very small program to put the planets in the database, and let us view info about any planet. First we
 will need a class that can insert all the planets. Make a file `src/PlanetStore.php`
@@ -227,7 +227,7 @@ php -S localhost:8080
 
 Open [http://localhost:8080/viewPlanet.php?name=Earth](http://localhost:8080/viewPlanet.php?name=Earth) in your browser.
 
-## Other Database Engines.
+### Other Database Engines.
 
 PDO has [drivers](https://www.php.net/manual/en/pdo.drivers.php) for eleven other database engines that you can use
 use instead of SQLite. Connecting, sending queries, and receiving rows should work in the same way, but of course the

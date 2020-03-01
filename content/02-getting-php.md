@@ -5,7 +5,7 @@
 If you just want to run a PHP one-liner, or experiment with a tiny throwaway PHP script, the easiest way is probably
 online at [3v4l](https://3v4l.org/), but to work through this tutorial you should have PHP installed on your computer.
 
-## Installation
+### Installation
 
 First check if you already have PHP installed. Open your command-line prompt, and type `php --v`. If you have PHP, you
 should see something like:

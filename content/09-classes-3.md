@@ -2,7 +2,7 @@
 
 {% block body%}
 
-## Static methods
+### Static methods
 
 Not all the methods on a class have to run in the context of an object. Methods that work without a `$this` object
 instance are called static methods. Let's add a static method to the Planet class in `src/Planet.php`:
@@ -65,7 +65,7 @@ echo "Planet {$planet->getName()} has a population of {$planet->getPopulationSiz
 The double colon is the **Scope Resolution Operator**. It accesses static methods (and properties) of classes - there is
 no need to have an object first. In this case our method returns an instance of the class, but it could do anything.
 
-## Object Identity
+### Object Identity
 
 A PHP variable can't actually hold an object - instead it holds an **object identifier**, also known as a **reference**.
 

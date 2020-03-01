@@ -32,7 +32,7 @@ The `new` keyword creates objects instances from classes, and automatically call
 We can try running this now but it won't work just yet, because we need to link it up with `Planet.php`. When you type
 `php start.php` you should see `PHP Fatal error:  Uncaught Error: Class 'Planet' not found`.
 
-## Linking files together
+### Linking files together
 
 There are two main ways to link files together. The old way is **require_once**, and the new ways is **composer**. We'll
 start with require_once.

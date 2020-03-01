@@ -14,7 +14,7 @@ the libraries we're using.
 Static Analysers for PHP include [Psalm](https://psalm.dev/), [PHPStan](https://github.com/phpstan/phpstan) and
 [Phan](https://github.com/phan/phan). In this tutorial we will use Psalm.
 
-## Running Psalm
+### Running Psalm
 
 Install Psalm with Composer:
 

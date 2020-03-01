@@ -16,7 +16,7 @@ echo "Hello, $planet.\n";
 
 You can probably guess what this will do when you run it on your command line or serve it to your browser.
 
-## Arrays and loops
+### Arrays and loops
 
 PHP has a very versatile built-in type called `array`. You're unlikely to find much PHP code that doesn't use arrays
 extensively, but they are easy to overuse at the cost of other more expressive types. Despite the name, a PHP `array`
@@ -84,7 +84,7 @@ Re-run the script - the planets are now listed in reverse order. But notice that
 Mercury is still planet number `0`, it's just that `0` now comes last. PHP array keys can come in any
 order.
 
-## Associative arrays
+### Associative arrays
 
 We can also assign array keys explicitly. When we're interested in the keys of an array we call it an
 *associative array*. For example:

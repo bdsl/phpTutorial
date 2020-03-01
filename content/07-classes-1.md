@@ -41,7 +41,7 @@ final class Planet
 }
 ```
 
-## Older PHP Versions
+### Older PHP Versions
 
 `name` and `populationSize` are the properties of the class, and they have `string` and `float` types respectively.
 Before 7.4 PHP didn't allow us to specify types for properties. We still want to know what types of values we intend to
@@ -64,12 +64,12 @@ These DocBlocks are ignored by the PHP engine, but they are very useful for us, 
 The code inside the docblock is written in the [PHPDoc](https://docs.phpdoc.org/latest/references/phpdoc/index.html)
 language.
 
-## Running the code
+### Running the code
 
 Run `php Planet.php`. You should see no output - a class by itself doesn't do anything. We will write code to use this
 class on the next page.
 
-## What's in the class
+### What's in the class
 
 Let's read through the class from top to bottom.
 

@@ -5,7 +5,7 @@
 If we want to work on even a moderately complex program over time, we need automated testing - manually testing
 everything every time we make a change would quickly become unsustainable.
 
-## Installing PHPUnit
+### Installing PHPUnit
 
 The leading test framework for PHP is Sebastian Bergmann's PHPUnit.
 
@@ -47,7 +47,7 @@ installed. At the time of writing it shows me that PHPUnit is at version 9.0.1, 
 packages that have been installed because PHPUnit depends on them directly or indirectly. The `composer show` command
 will output the list of installed packages in a much more consice format.
 
-## Writing a test
+### Writing a test
 
 Let's write our first test. Create a `test` subdirectory next to `src`, and write the following in `test/PlanetTest.php`
 
