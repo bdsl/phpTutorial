@@ -60,7 +60,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Deploy to Githup pages
+          name: Deploy to GitHub Pages
           command: |
             find /tmp/workspace
             cd ~/project
