@@ -4,31 +4,30 @@
     justify-content: center;
     flex-flow: column wrap;
     align-content: stretch;
-    max-height: 13em;
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 1000px) {
     #pages ul {
-        max-height: none;
+        max-height: 13em;
     }
 }
 
 #pages ul li {
-    margin: 0.2em 1em;
+    margin: 0.2em 1em 0.2em 0;
     min-width: 20em;
-    display: block;
+    list-style: none;
     flex: 1 1 0;
-    border-bottom: 0.1em rgba(0,0,0,0) solid;
-    padding-bottom: 0.1em;
+    border-bottom: 1px transparent solid;
+    padding-bottom: 1px;
 }
 
 #pages ul li.current {
-    list-style: disc;
-    border-bottom-color: black;
+    border-bottom-color: inherit;
 }
 
 #pages ul li.current a {
     color: inherit;
+    text-decoration: none;
 }
 
 body > div {
