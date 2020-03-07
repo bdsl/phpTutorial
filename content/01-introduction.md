@@ -9,7 +9,7 @@ This is for anyone who wants to learn to program in PHP.
 You should probably already know at least one programming language with curly braces, if conditions, variables, functions and
 loops. The most likely scenario is that you are a Javascript or Typescript developer, working on a team that uses
 a combination of PHP and JS or TS, and while you might not currently need deep PHP knowledge,
-you want 'T-shaped skills', involving basic PHP knowledge. There will be some comparisons between with Javascript and
+you want 'T-shaped skills', involving basic PHP knowledge. There will be some comparisons with Javascript and
 Typescript.
 
 ### Why did I write it?
