@@ -13,7 +13,7 @@ By convention, and to follow the [PSR-1](https://www.php-fig.org/psr/psr-1/) cod
 point in a separate file to the class declaration.
 
 Let's write a simple script to create a planet and print out its details. Since at the moment Planet is just a data
-holder the script won't be too exiting.
+holder the script won't be too exciting.
 
 Write the following in a file called start.php
 

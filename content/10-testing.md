@@ -45,7 +45,7 @@ won't install that unless we edit composer json. Composer works best with depend
 Composer has also created a new file for us, `composer.lock`. This has metadata about the exact versions of the packages
 installed. At the time of writing it shows me that PHPUnit is at version 9.0.1, and I can see the details of 29 other
 packages that have been installed because PHPUnit depends on them directly or indirectly. The `composer show` command
-will output the list of installed packages in a much more consice format.
+will output the list of installed packages in a much more concise format.
 
 ### Writing a test
 

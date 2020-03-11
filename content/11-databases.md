@@ -41,7 +41,7 @@ Once you've found the package name, e.g. `php7.4-sqlite3` install it with a comm
 
 ### Mac
 
-If you installed PHP via homebrew, I think will automatically have come with SQLite built in and enabled.
+If you installed PHP via homebrew, I think it will automatically have come with SQLite built in and enabled.
 
 ### Windows
 
