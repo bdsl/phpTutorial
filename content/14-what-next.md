@@ -47,7 +47,7 @@ to install a library or tool.
 
 * [Subscribe](https://info.jetbrains.com/PHP-Annotated-Subscription.html) to 
 [PHP Annotated Monthly](https://blog.jetbrains.com/phpstorm/category/php-annotated-monthly/) from the makers of 
-[PhpStorm](https://www.jetbrains.com/phpstorm/), for interesting links every Month.
+[PhpStorm](https://www.jetbrains.com/phpstorm/), for interesting links every month.
 
 * And finally, read [Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing 
 Technology Organizations](https://itrevolution.com/book/accelerate/), by [Nicole Forsgren](https://twitter.com/nicolefv),
