@@ -7,7 +7,7 @@ online at [3v4l](https://3v4l.org/), but to work through this tutorial you shoul
 
 ### Installation
 
-First check if you already have PHP installed. Open your command-line prompt, and type `php --v`. If you have PHP, you
+First check if you already have PHP installed. Open your command-line prompt, and type `php -v`. If you have PHP, you
 should see something like:
 
 ```
