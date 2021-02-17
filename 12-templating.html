@@ -135,7 +135,7 @@ that uses it, and neither will any tools and IDEs we might be using, we should a
 expect to have a <code>planet</code> variable, and it will be of type <code>Planet</code>. Add the following to the top of the file:</p>
 <pre><code class="language-twig"></code></pre>
 <p>In Twig we use double curly brackets to output dynamic data: Replace <code>Some Planet</code> with
-<code>, and replace `34601` with</code>. Twig knows that we mean <code>getName</code> and
+<code>{{planet.name}}</code>, and replace <code>34601</code> with <code>{{planet.populationSize}}</code>. Twig knows that we mean <code>getName</code> and
 <code>getPopulationSize</code>, so we don't have to write those function names out in full.</p>
 <p>If you reload the page you should now see the planet details in their proper places.</p>
 <p>Twig is a full featured special purpose programming language, with features like loops, conditionals, filters,
@@ -157,8 +157,8 @@ inheritance, etc, but this is a PHP tutorial, not a Twig tutorial.</p>
             <em>
                 &copy; <a href="https://twitter.com/sorsoup">Barney Laurance</a> <br>
                 Site generated from <a href="https://github.com/bdsl/phpTutorial">sources</a>
-                at 20:46 London time on
-                Fri 28 Aug 2020.
+                at 20:27 London time on
+                Wed 17 Feb 2021.
             </em>
         </div>
     </div>
