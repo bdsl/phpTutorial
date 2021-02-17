@@ -9,4 +9,4 @@ Some more notes on how this is should be different to what's already out there a
 
 Read the website at https://a-moderately-short-php-tutorial.com/
 
-CircleCI is configured to to rebuild the website based on any changes in the repository.
+CircleCI is [configured](./.circleci/config.yml) to to rebuild the website based on any changes in the repository. 
