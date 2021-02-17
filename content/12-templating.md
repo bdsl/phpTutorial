@@ -92,7 +92,7 @@ expect to have a `planet` variable, and it will be of type `Planet`. Add the fol
 ```
 
 In Twig we use double curly brackets to output dynamic data: Replace `Some Planet` with 
-`{{planet.name}}`, and replace `34601` with `{{planet.populationSize}}`. Twig knows that we mean `getName` and 
+`{{'{{planet.name}}'}}`, and replace `34601` with `{{'{{planet.populationSize}}'}}`. Twig knows that we mean `getName` and
 `getPopulationSize`, so we don't have to write those function names out in full.
 
 If you reload the page you should now see the planet details in their proper places.
