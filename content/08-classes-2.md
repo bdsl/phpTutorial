@@ -127,7 +127,7 @@ As long as we keep our file names matching our class names, Composer will automa
 only when we need it.
 
 Of course technically we haven't got rid of the `require_once` statement, but by requiring the autoloader we won't
-need to add any more require statements, however classes we use in our program.
+need to add any more require statements, however many classes we use in our program.
 
 If you run `php start.php` you should once again learn the population of Neptune.
 {% endblock %}
