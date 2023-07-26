@@ -2,7 +2,7 @@
 
 {% block body%}
 
-Variables in PHP always have a dollar sign `$` at the start of their names, and you declare a variable by assigning a
+Variables in PHP always have a dollar sign like `$` at the start of their names, and you declare a variable by assigning a
 value to it. PHP *interpolates* double-quoted strings with variables. Edit hello.php to use a variable:
 
 ```php
